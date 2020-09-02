@@ -1,0 +1,4029 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0.4 (Python 3.7.6 on win32)" generated="20200903 00:49:32.104">
+<suite id="s1" name="TC1 PayOnDelivery and Brand Filter" source="D:\MONU\Robotframework\Amazon\TestCases\TC1_PayOnDelivery_and_Brand_Filter.txt">
+<kw name="Open Makemytrip" library="Keywords" type="setup">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>${urlOFAmazon}</arg>
+<arg>${browser}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:32.435" level="INFO">Opening browser 'Firefox' to base url 'https://www.amazon.in/'.</msg>
+<msg timestamp="20200903 00:49:32.435" level="INFO">Firefox driver log is always forced to to: D:\MONU\Robotframework\Amazon\TestCases\geckodriver-1.log</msg>
+<status status="PASS" starttime="20200903 00:49:32.435" endtime="20200903 00:49:51.448"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20200903 00:49:51.448" endtime="20200903 00:49:51.448"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:32.435" endtime="20200903 00:49:51.448"></status>
+</kw>
+<test id="s1-t1" name="Select Pay on Delivery Filter and Check According to Selected Filter">
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${MobilesButton}</arg>
+</arguments>
+<status status="PASS" starttime="20200903 00:49:51.448" endtime="20200903 00:49:51.649"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${MobilesButton}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:51.649" level="INFO">Clicking element 'css = a[href*="mobiles"]'.</msg>
+<status status="PASS" starttime="20200903 00:49:51.649" endtime="20200903 00:49:55.507"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${PayOnDeliveryCheckbox}</arg>
+</arguments>
+<status status="PASS" starttime="20200903 00:49:55.507" endtime="20200903 00:49:55.607"></status>
+</kw>
+<kw name="Get Text" library="Selenium2Library">
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<arguments>
+<arg>${PayOnDeliveryCheckbox}</arg>
+</arguments>
+<assign>
+<var>${valueCheckbox}</var>
+</assign>
+<msg timestamp="20200903 00:49:55.676" level="INFO">${valueCheckbox} = Eligible for Pay On Delivery</msg>
+<status status="PASS" starttime="20200903 00:49:55.607" endtime="20200903 00:49:55.676"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${PayOnDeliveryCheckbox}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:55.676" level="INFO">Clicking element 'css = div#leftNav ul:nth-child(12) li span[class*="checkbox"]'.</msg>
+<status status="PASS" starttime="20200903 00:49:55.676" endtime="20200903 00:49:58.383"></status>
+</kw>
+<kw name="Element Should Contain" library="Selenium2Library">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>${ToolbarSection}</arg>
+<arg>${valueCheckbox}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:58.537" level="INFO">Element 'css=h1[class*="toolbar"] div.sg-col-inner' contains text 'Eligible for Pay On Delivery'.</msg>
+<status status="PASS" starttime="20200903 00:49:58.383" endtime="20200903 00:49:58.537"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<status status="PASS" starttime="20200903 00:49:58.537" endtime="20200903 00:49:58.600"></status>
+</kw>
+<kw name="${pageNumber} IN RANGE [ 10 ]" type="for">
+<kw name="${pageNumber} = 0" type="foritem">
+<kw name="Get Element Count" library="Selenium2Library">
+<doc>Returns the number of elements matching ``locator``.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<assign>
+<var>${totalResults}</var>
+</assign>
+<msg timestamp="20200903 00:49:58.615" level="INFO">${totalResults} = 27</msg>
+<status status="PASS" starttime="20200903 00:49:58.600" endtime="20200903 00:49:58.615"></status>
+</kw>
+<kw name="Check Filters in Single Results">
+<arguments>
+<arg>${totalResults}</arg>
+</arguments>
+<kw name="${singleResult} IN RANGE [ ${totalResults}-3 ]" type="for">
+<kw name="${singleResult} = 0" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:58.731" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:58.615" endtime="20200903 00:49:58.731"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:58.731" level="INFO">${singleResult} = 1</msg>
+<status status="PASS" starttime="20200903 00:49:58.731" endtime="20200903 00:49:58.731"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:58.615" endtime="20200903 00:49:58.731"></status>
+</kw>
+<kw name="${singleResult} = 1" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:58.785" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:58.731" endtime="20200903 00:49:58.785"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:58.785" level="INFO">${singleResult} = 2</msg>
+<status status="PASS" starttime="20200903 00:49:58.785" endtime="20200903 00:49:58.785"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:58.731" endtime="20200903 00:49:58.785"></status>
+</kw>
+<kw name="${singleResult} = 2" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:58.832" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:58.785" endtime="20200903 00:49:58.832"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:58.832" level="INFO">${singleResult} = 3</msg>
+<status status="PASS" starttime="20200903 00:49:58.832" endtime="20200903 00:49:58.832"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:58.785" endtime="20200903 00:49:58.832"></status>
+</kw>
+<kw name="${singleResult} = 3" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:58.869" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:58.838" endtime="20200903 00:49:58.869"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:58.885" level="INFO">${singleResult} = 4</msg>
+<status status="PASS" starttime="20200903 00:49:58.869" endtime="20200903 00:49:58.885"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:58.832" endtime="20200903 00:49:58.885"></status>
+</kw>
+<kw name="${singleResult} = 4" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:58.916" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:58.885" endtime="20200903 00:49:58.916"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:58.916" level="INFO">${singleResult} = 5</msg>
+<status status="PASS" starttime="20200903 00:49:58.916" endtime="20200903 00:49:58.916"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:58.885" endtime="20200903 00:49:58.916"></status>
+</kw>
+<kw name="${singleResult} = 5" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:58.938" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:58.916" endtime="20200903 00:49:58.938"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:58.938" level="INFO">${singleResult} = 6</msg>
+<status status="PASS" starttime="20200903 00:49:58.938" endtime="20200903 00:49:58.938"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:58.916" endtime="20200903 00:49:58.938"></status>
+</kw>
+<kw name="${singleResult} = 6" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:58.970" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:58.938" endtime="20200903 00:49:58.970"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:58.985" level="INFO">${singleResult} = 7</msg>
+<status status="PASS" starttime="20200903 00:49:58.970" endtime="20200903 00:49:58.985"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:58.938" endtime="20200903 00:49:58.985"></status>
+</kw>
+<kw name="${singleResult} = 7" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.001" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:58.985" endtime="20200903 00:49:59.001"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.001" level="INFO">${singleResult} = 8</msg>
+<status status="PASS" starttime="20200903 00:49:59.001" endtime="20200903 00:49:59.001"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:58.985" endtime="20200903 00:49:59.001"></status>
+</kw>
+<kw name="${singleResult} = 8" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.032" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.001" endtime="20200903 00:49:59.032"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.032" level="INFO">${singleResult} = 9</msg>
+<status status="PASS" starttime="20200903 00:49:59.032" endtime="20200903 00:49:59.032"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.001" endtime="20200903 00:49:59.032"></status>
+</kw>
+<kw name="${singleResult} = 9" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.054" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.032" endtime="20200903 00:49:59.054"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.054" level="INFO">${singleResult} = 10</msg>
+<status status="PASS" starttime="20200903 00:49:59.054" endtime="20200903 00:49:59.054"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.032" endtime="20200903 00:49:59.054"></status>
+</kw>
+<kw name="${singleResult} = 10" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.086" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.054" endtime="20200903 00:49:59.086"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.086" level="INFO">${singleResult} = 11</msg>
+<status status="PASS" starttime="20200903 00:49:59.086" endtime="20200903 00:49:59.086"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.054" endtime="20200903 00:49:59.086"></status>
+</kw>
+<kw name="${singleResult} = 11" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.101" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.086" endtime="20200903 00:49:59.101"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.101" level="INFO">${singleResult} = 12</msg>
+<status status="PASS" starttime="20200903 00:49:59.101" endtime="20200903 00:49:59.101"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.086" endtime="20200903 00:49:59.101"></status>
+</kw>
+<kw name="${singleResult} = 12" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.139" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.101" endtime="20200903 00:49:59.139"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.139" level="INFO">${singleResult} = 13</msg>
+<status status="PASS" starttime="20200903 00:49:59.139" endtime="20200903 00:49:59.139"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.101" endtime="20200903 00:49:59.139"></status>
+</kw>
+<kw name="${singleResult} = 13" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.155" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.139" endtime="20200903 00:49:59.155"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.155" level="INFO">${singleResult} = 14</msg>
+<status status="PASS" starttime="20200903 00:49:59.155" endtime="20200903 00:49:59.155"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.139" endtime="20200903 00:49:59.170"></status>
+</kw>
+<kw name="${singleResult} = 14" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.201" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.170" endtime="20200903 00:49:59.201"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.201" level="INFO">${singleResult} = 15</msg>
+<status status="PASS" starttime="20200903 00:49:59.201" endtime="20200903 00:49:59.201"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.170" endtime="20200903 00:49:59.201"></status>
+</kw>
+<kw name="${singleResult} = 15" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.233" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.201" endtime="20200903 00:49:59.233"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.233" level="INFO">${singleResult} = 16</msg>
+<status status="PASS" starttime="20200903 00:49:59.233" endtime="20200903 00:49:59.234"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.201" endtime="20200903 00:49:59.234"></status>
+</kw>
+<kw name="${singleResult} = 16" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.258" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.234" endtime="20200903 00:49:59.258"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.259" level="INFO">${singleResult} = 17</msg>
+<status status="PASS" starttime="20200903 00:49:59.258" endtime="20200903 00:49:59.259"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.234" endtime="20200903 00:49:59.259"></status>
+</kw>
+<kw name="${singleResult} = 17" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.282" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.259" endtime="20200903 00:49:59.282"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.282" level="INFO">${singleResult} = 18</msg>
+<status status="PASS" starttime="20200903 00:49:59.282" endtime="20200903 00:49:59.282"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.259" endtime="20200903 00:49:59.282"></status>
+</kw>
+<kw name="${singleResult} = 18" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.298" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.282" endtime="20200903 00:49:59.298"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.298" level="INFO">${singleResult} = 19</msg>
+<status status="PASS" starttime="20200903 00:49:59.298" endtime="20200903 00:49:59.298"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.282" endtime="20200903 00:49:59.298"></status>
+</kw>
+<kw name="${singleResult} = 19" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.329" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.298" endtime="20200903 00:49:59.329"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.329" level="INFO">${singleResult} = 20</msg>
+<status status="PASS" starttime="20200903 00:49:59.329" endtime="20200903 00:49:59.329"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.298" endtime="20200903 00:49:59.329"></status>
+</kw>
+<kw name="${singleResult} = 20" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.355" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.329" endtime="20200903 00:49:59.355"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.355" level="INFO">${singleResult} = 21</msg>
+<status status="PASS" starttime="20200903 00:49:59.355" endtime="20200903 00:49:59.355"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.329" endtime="20200903 00:49:59.355"></status>
+</kw>
+<kw name="${singleResult} = 21" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.386" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.355" endtime="20200903 00:49:59.386"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.386" level="INFO">${singleResult} = 22</msg>
+<status status="PASS" starttime="20200903 00:49:59.386" endtime="20200903 00:49:59.386"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.355" endtime="20200903 00:49:59.386"></status>
+</kw>
+<kw name="${singleResult} = 22" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.401" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.386" endtime="20200903 00:49:59.401"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.401" level="INFO">${singleResult} = 23</msg>
+<status status="PASS" starttime="20200903 00:49:59.401" endtime="20200903 00:49:59.401"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.386" endtime="20200903 00:49:59.401"></status>
+</kw>
+<kw name="${singleResult} = 23" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.433" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:49:59.401" endtime="20200903 00:49:59.433"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:49:59.433" level="INFO">${singleResult} = 24</msg>
+<status status="PASS" starttime="20200903 00:49:59.433" endtime="20200903 00:49:59.433"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.401" endtime="20200903 00:49:59.433"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:58.615" endtime="20200903 00:49:59.433"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:58.615" endtime="20200903 00:49:59.433"></status>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>Element Should Be Visible</arg>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20200903 00:49:59.555" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20200903 00:49:59.439" endtime="20200903 00:49:59.555"></status>
+</kw>
+<msg timestamp="20200903 00:49:59.555" level="FAIL">Element with locator 'css=li[class*="disabled a-last"]' not found.</msg>
+<status status="FAIL" starttime="20200903 00:49:59.433" endtime="20200903 00:49:59.555"></status>
+</kw>
+<msg timestamp="20200903 00:49:59.555" level="INFO">${status} = False</msg>
+<status status="PASS" starttime="20200903 00:49:59.433" endtime="20200903 00:49:59.555"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${status}==False</arg>
+<arg>Click Element</arg>
+<arg>${NextButton}</arg>
+<arg>ELSE</arg>
+<arg>Exit For Loop</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${NextButton}</arg>
+</arguments>
+<msg timestamp="20200903 00:49:59.555" level="INFO">Clicking element 'css=.a-last'.</msg>
+<status status="PASS" starttime="20200903 00:49:59.555" endtime="20200903 00:50:01.661"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:59.555" endtime="20200903 00:50:01.661"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<status status="PASS" starttime="20200903 00:50:01.661" endtime="20200903 00:50:01.946"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${pageNumber}+1</arg>
+</arguments>
+<assign>
+<var>${pageNumber}</var>
+</assign>
+<msg timestamp="20200903 00:50:01.946" level="INFO">${pageNumber} = 1</msg>
+<status status="PASS" starttime="20200903 00:50:01.946" endtime="20200903 00:50:01.946"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:58.600" endtime="20200903 00:50:01.946"></status>
+</kw>
+<kw name="${pageNumber} = 1" type="foritem">
+<kw name="Get Element Count" library="Selenium2Library">
+<doc>Returns the number of elements matching ``locator``.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<assign>
+<var>${totalResults}</var>
+</assign>
+<msg timestamp="20200903 00:50:02.046" level="INFO">${totalResults} = 27</msg>
+<status status="PASS" starttime="20200903 00:50:01.946" endtime="20200903 00:50:02.046"></status>
+</kw>
+<kw name="Check Filters in Single Results">
+<arguments>
+<arg>${totalResults}</arg>
+</arguments>
+<kw name="${singleResult} IN RANGE [ ${totalResults}-3 ]" type="for">
+<kw name="${singleResult} = 0" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:02.140" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:02.046" endtime="20200903 00:50:02.140"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:02.140" level="INFO">${singleResult} = 1</msg>
+<status status="PASS" starttime="20200903 00:50:02.140" endtime="20200903 00:50:02.140"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.046" endtime="20200903 00:50:02.140"></status>
+</kw>
+<kw name="${singleResult} = 1" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:02.297" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:02.140" endtime="20200903 00:50:02.297"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:02.297" level="INFO">${singleResult} = 2</msg>
+<status status="PASS" starttime="20200903 00:50:02.297" endtime="20200903 00:50:02.297"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.140" endtime="20200903 00:50:02.297"></status>
+</kw>
+<kw name="${singleResult} = 2" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:02.448" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:02.297" endtime="20200903 00:50:02.448"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:02.448" level="INFO">${singleResult} = 3</msg>
+<status status="PASS" starttime="20200903 00:50:02.448" endtime="20200903 00:50:02.448"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.297" endtime="20200903 00:50:02.448"></status>
+</kw>
+<kw name="${singleResult} = 3" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:02.579" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:02.448" endtime="20200903 00:50:02.579"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:02.579" level="INFO">${singleResult} = 4</msg>
+<status status="PASS" starttime="20200903 00:50:02.579" endtime="20200903 00:50:02.579"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.448" endtime="20200903 00:50:02.579"></status>
+</kw>
+<kw name="${singleResult} = 4" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:02.679" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:02.579" endtime="20200903 00:50:02.679"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:02.679" level="INFO">${singleResult} = 5</msg>
+<status status="PASS" starttime="20200903 00:50:02.679" endtime="20200903 00:50:02.679"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.579" endtime="20200903 00:50:02.679"></status>
+</kw>
+<kw name="${singleResult} = 5" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:02.711" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:02.679" endtime="20200903 00:50:02.711"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:02.726" level="INFO">${singleResult} = 6</msg>
+<status status="PASS" starttime="20200903 00:50:02.711" endtime="20200903 00:50:02.726"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.679" endtime="20200903 00:50:02.726"></status>
+</kw>
+<kw name="${singleResult} = 6" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:02.748" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:02.726" endtime="20200903 00:50:02.748"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:02.748" level="INFO">${singleResult} = 7</msg>
+<status status="PASS" starttime="20200903 00:50:02.748" endtime="20200903 00:50:02.748"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.726" endtime="20200903 00:50:02.748"></status>
+</kw>
+<kw name="${singleResult} = 7" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:02.795" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:02.748" endtime="20200903 00:50:02.795"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:02.795" level="INFO">${singleResult} = 8</msg>
+<status status="PASS" starttime="20200903 00:50:02.795" endtime="20200903 00:50:02.795"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.748" endtime="20200903 00:50:02.795"></status>
+</kw>
+<kw name="${singleResult} = 8" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:02.827" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:02.795" endtime="20200903 00:50:02.827"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:02.827" level="INFO">${singleResult} = 9</msg>
+<status status="PASS" starttime="20200903 00:50:02.827" endtime="20200903 00:50:02.827"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.795" endtime="20200903 00:50:02.827"></status>
+</kw>
+<kw name="${singleResult} = 9" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:02.911" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:02.827" endtime="20200903 00:50:02.911"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:02.911" level="INFO">${singleResult} = 10</msg>
+<status status="PASS" starttime="20200903 00:50:02.911" endtime="20200903 00:50:02.911"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.827" endtime="20200903 00:50:02.911"></status>
+</kw>
+<kw name="${singleResult} = 10" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:02.949" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:02.911" endtime="20200903 00:50:02.949"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:02.949" level="INFO">${singleResult} = 11</msg>
+<status status="PASS" starttime="20200903 00:50:02.949" endtime="20200903 00:50:02.949"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.911" endtime="20200903 00:50:02.949"></status>
+</kw>
+<kw name="${singleResult} = 11" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:02.996" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:02.949" endtime="20200903 00:50:02.996"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:02.996" level="INFO">${singleResult} = 12</msg>
+<status status="PASS" starttime="20200903 00:50:02.996" endtime="20200903 00:50:02.996"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.949" endtime="20200903 00:50:02.996"></status>
+</kw>
+<kw name="${singleResult} = 12" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:03.081" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:02.996" endtime="20200903 00:50:03.081"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:03.081" level="INFO">${singleResult} = 13</msg>
+<status status="PASS" starttime="20200903 00:50:03.081" endtime="20200903 00:50:03.081"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.996" endtime="20200903 00:50:03.081"></status>
+</kw>
+<kw name="${singleResult} = 13" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:03.165" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:03.081" endtime="20200903 00:50:03.165"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:03.165" level="INFO">${singleResult} = 14</msg>
+<status status="PASS" starttime="20200903 00:50:03.165" endtime="20200903 00:50:03.169"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:03.081" endtime="20200903 00:50:03.169"></status>
+</kw>
+<kw name="${singleResult} = 14" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:03.217" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:03.169" endtime="20200903 00:50:03.217"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:03.217" level="INFO">${singleResult} = 15</msg>
+<status status="PASS" starttime="20200903 00:50:03.217" endtime="20200903 00:50:03.217"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:03.169" endtime="20200903 00:50:03.217"></status>
+</kw>
+<kw name="${singleResult} = 15" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:03.250" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:03.217" endtime="20200903 00:50:03.250"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:03.250" level="INFO">${singleResult} = 16</msg>
+<status status="PASS" starttime="20200903 00:50:03.250" endtime="20200903 00:50:03.250"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:03.217" endtime="20200903 00:50:03.250"></status>
+</kw>
+<kw name="${singleResult} = 16" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:03.281" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:03.250" endtime="20200903 00:50:03.281"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:03.281" level="INFO">${singleResult} = 17</msg>
+<status status="PASS" starttime="20200903 00:50:03.281" endtime="20200903 00:50:03.281"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:03.250" endtime="20200903 00:50:03.281"></status>
+</kw>
+<kw name="${singleResult} = 17" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:03.312" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:03.281" endtime="20200903 00:50:03.312"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:03.312" level="INFO">${singleResult} = 18</msg>
+<status status="PASS" starttime="20200903 00:50:03.312" endtime="20200903 00:50:03.312"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:03.281" endtime="20200903 00:50:03.312"></status>
+</kw>
+<kw name="${singleResult} = 18" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:03.350" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:03.312" endtime="20200903 00:50:03.350"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:03.350" level="INFO">${singleResult} = 19</msg>
+<status status="PASS" starttime="20200903 00:50:03.350" endtime="20200903 00:50:03.350"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:03.312" endtime="20200903 00:50:03.350"></status>
+</kw>
+<kw name="${singleResult} = 19" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:03.381" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:03.350" endtime="20200903 00:50:03.381"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:03.381" level="INFO">${singleResult} = 20</msg>
+<status status="PASS" starttime="20200903 00:50:03.381" endtime="20200903 00:50:03.381"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:03.350" endtime="20200903 00:50:03.381"></status>
+</kw>
+<kw name="${singleResult} = 20" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:03.412" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:03.381" endtime="20200903 00:50:03.412"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:03.412" level="INFO">${singleResult} = 21</msg>
+<status status="PASS" starttime="20200903 00:50:03.412" endtime="20200903 00:50:03.412"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:03.381" endtime="20200903 00:50:03.412"></status>
+</kw>
+<kw name="${singleResult} = 21" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:03.428" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:03.412" endtime="20200903 00:50:03.428"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:03.428" level="INFO">${singleResult} = 22</msg>
+<status status="PASS" starttime="20200903 00:50:03.428" endtime="20200903 00:50:03.428"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:03.412" endtime="20200903 00:50:03.428"></status>
+</kw>
+<kw name="${singleResult} = 22" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:03.466" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:03.428" endtime="20200903 00:50:03.466"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:03.466" level="INFO">${singleResult} = 23</msg>
+<status status="PASS" starttime="20200903 00:50:03.466" endtime="20200903 00:50:03.466"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:03.428" endtime="20200903 00:50:03.466"></status>
+</kw>
+<kw name="${singleResult} = 23" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:03.529" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:03.466" endtime="20200903 00:50:03.530"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:03.531" level="INFO">${singleResult} = 24</msg>
+<status status="PASS" starttime="20200903 00:50:03.530" endtime="20200903 00:50:03.531"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:03.466" endtime="20200903 00:50:03.531"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.046" endtime="20200903 00:50:03.531"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:02.046" endtime="20200903 00:50:03.532"></status>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>Element Should Be Visible</arg>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20200903 00:50:03.845" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-6.png"&gt;&lt;img src="selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20200903 00:50:03.538" endtime="20200903 00:50:03.845"></status>
+</kw>
+<msg timestamp="20200903 00:50:03.851" level="FAIL">Element with locator 'css=li[class*="disabled a-last"]' not found.</msg>
+<status status="FAIL" starttime="20200903 00:50:03.532" endtime="20200903 00:50:03.851"></status>
+</kw>
+<msg timestamp="20200903 00:50:03.851" level="INFO">${status} = False</msg>
+<status status="PASS" starttime="20200903 00:50:03.532" endtime="20200903 00:50:03.851"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${status}==False</arg>
+<arg>Click Element</arg>
+<arg>${NextButton}</arg>
+<arg>ELSE</arg>
+<arg>Exit For Loop</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${NextButton}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:03.853" level="INFO">Clicking element 'css=.a-last'.</msg>
+<status status="PASS" starttime="20200903 00:50:03.853" endtime="20200903 00:50:04.219"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:03.852" endtime="20200903 00:50:04.219"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<status status="PASS" starttime="20200903 00:50:04.220" endtime="20200903 00:50:04.955"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${pageNumber}+1</arg>
+</arguments>
+<assign>
+<var>${pageNumber}</var>
+</assign>
+<msg timestamp="20200903 00:50:04.957" level="INFO">${pageNumber} = 2</msg>
+<status status="PASS" starttime="20200903 00:50:04.956" endtime="20200903 00:50:04.957"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:01.946" endtime="20200903 00:50:04.957"></status>
+</kw>
+<kw name="${pageNumber} = 2" type="foritem">
+<kw name="Get Element Count" library="Selenium2Library">
+<doc>Returns the number of elements matching ``locator``.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<assign>
+<var>${totalResults}</var>
+</assign>
+<msg timestamp="20200903 00:50:05.044" level="INFO">${totalResults} = 6</msg>
+<status status="PASS" starttime="20200903 00:50:04.957" endtime="20200903 00:50:05.044"></status>
+</kw>
+<kw name="Check Filters in Single Results">
+<arguments>
+<arg>${totalResults}</arg>
+</arguments>
+<kw name="${singleResult} IN RANGE [ ${totalResults}-3 ]" type="for">
+<kw name="${singleResult} = 0" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:05.384" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:05.047" endtime="20200903 00:50:05.384"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:05.385" level="INFO">${singleResult} = 1</msg>
+<status status="PASS" starttime="20200903 00:50:05.384" endtime="20200903 00:50:05.385"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:05.046" endtime="20200903 00:50:05.385"></status>
+</kw>
+<kw name="${singleResult} = 1" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:05.475" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:05.385" endtime="20200903 00:50:05.476"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:05.476" level="INFO">${singleResult} = 2</msg>
+<status status="PASS" starttime="20200903 00:50:05.476" endtime="20200903 00:50:05.476"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:05.385" endtime="20200903 00:50:05.477"></status>
+</kw>
+<kw name="${singleResult} = 2" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:05.550" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:05.477" endtime="20200903 00:50:05.550"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:05.551" level="INFO">${singleResult} = 3</msg>
+<status status="PASS" starttime="20200903 00:50:05.550" endtime="20200903 00:50:05.551"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:05.477" endtime="20200903 00:50:05.551"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:05.045" endtime="20200903 00:50:05.551"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:05.045" endtime="20200903 00:50:05.551"></status>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>Element Should Be Visible</arg>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20200903 00:50:05.748" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-7.png"&gt;&lt;img src="selenium-screenshot-7.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20200903 00:50:05.571" endtime="20200903 00:50:05.748"></status>
+</kw>
+<msg timestamp="20200903 00:50:05.750" level="FAIL">Element with locator 'css=li[class*="disabled a-last"]' not found.</msg>
+<status status="FAIL" starttime="20200903 00:50:05.552" endtime="20200903 00:50:05.750"></status>
+</kw>
+<msg timestamp="20200903 00:50:05.751" level="INFO">${status} = False</msg>
+<status status="PASS" starttime="20200903 00:50:05.551" endtime="20200903 00:50:05.751"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${status}==False</arg>
+<arg>Click Element</arg>
+<arg>${NextButton}</arg>
+<arg>ELSE</arg>
+<arg>Exit For Loop</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${NextButton}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:05.753" level="INFO">Clicking element 'css=.a-last'.</msg>
+<status status="PASS" starttime="20200903 00:50:05.752" endtime="20200903 00:50:06.071"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:05.751" endtime="20200903 00:50:06.071"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<status status="PASS" starttime="20200903 00:50:06.072" endtime="20200903 00:50:06.749"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${pageNumber}+1</arg>
+</arguments>
+<assign>
+<var>${pageNumber}</var>
+</assign>
+<msg timestamp="20200903 00:50:06.751" level="INFO">${pageNumber} = 3</msg>
+<status status="PASS" starttime="20200903 00:50:06.750" endtime="20200903 00:50:06.751"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:04.957" endtime="20200903 00:50:06.751"></status>
+</kw>
+<kw name="${pageNumber} = 3" type="foritem">
+<kw name="Get Element Count" library="Selenium2Library">
+<doc>Returns the number of elements matching ``locator``.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<assign>
+<var>${totalResults}</var>
+</assign>
+<msg timestamp="20200903 00:50:06.794" level="INFO">${totalResults} = 7</msg>
+<status status="PASS" starttime="20200903 00:50:06.752" endtime="20200903 00:50:06.794"></status>
+</kw>
+<kw name="Check Filters in Single Results">
+<arguments>
+<arg>${totalResults}</arg>
+</arguments>
+<kw name="${singleResult} IN RANGE [ ${totalResults}-3 ]" type="for">
+<kw name="${singleResult} = 0" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:07.147" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:06.796" endtime="20200903 00:50:07.147"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:07.148" level="INFO">${singleResult} = 1</msg>
+<status status="PASS" starttime="20200903 00:50:07.147" endtime="20200903 00:50:07.148"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:06.796" endtime="20200903 00:50:07.148"></status>
+</kw>
+<kw name="${singleResult} = 1" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:07.236" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:07.149" endtime="20200903 00:50:07.237"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:07.237" level="INFO">${singleResult} = 2</msg>
+<status status="PASS" starttime="20200903 00:50:07.237" endtime="20200903 00:50:07.237"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:07.148" endtime="20200903 00:50:07.238"></status>
+</kw>
+<kw name="${singleResult} = 2" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:07.305" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:07.238" endtime="20200903 00:50:07.305"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:07.306" level="INFO">${singleResult} = 3</msg>
+<status status="PASS" starttime="20200903 00:50:07.306" endtime="20200903 00:50:07.306"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:07.238" endtime="20200903 00:50:07.306"></status>
+</kw>
+<kw name="${singleResult} = 3" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:07.343" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:07.307" endtime="20200903 00:50:07.343"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:07.345" level="INFO">${singleResult} = 4</msg>
+<status status="PASS" starttime="20200903 00:50:07.343" endtime="20200903 00:50:07.345"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:07.306" endtime="20200903 00:50:07.345"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:06.795" endtime="20200903 00:50:07.345"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:06.794" endtime="20200903 00:50:07.345"></status>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>Element Should Be Visible</arg>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20200903 00:50:07.506" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-8.png"&gt;&lt;img src="selenium-screenshot-8.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20200903 00:50:07.354" endtime="20200903 00:50:07.506"></status>
+</kw>
+<msg timestamp="20200903 00:50:07.508" level="FAIL">Element with locator 'css=li[class*="disabled a-last"]' not found.</msg>
+<status status="FAIL" starttime="20200903 00:50:07.346" endtime="20200903 00:50:07.508"></status>
+</kw>
+<msg timestamp="20200903 00:50:07.508" level="INFO">${status} = False</msg>
+<status status="PASS" starttime="20200903 00:50:07.346" endtime="20200903 00:50:07.508"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${status}==False</arg>
+<arg>Click Element</arg>
+<arg>${NextButton}</arg>
+<arg>ELSE</arg>
+<arg>Exit For Loop</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${NextButton}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:07.511" level="INFO">Clicking element 'css=.a-last'.</msg>
+<status status="PASS" starttime="20200903 00:50:07.510" endtime="20200903 00:50:07.845"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:07.509" endtime="20200903 00:50:07.845"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<status status="PASS" starttime="20200903 00:50:07.845" endtime="20200903 00:50:08.527"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${pageNumber}+1</arg>
+</arguments>
+<assign>
+<var>${pageNumber}</var>
+</assign>
+<msg timestamp="20200903 00:50:08.528" level="INFO">${pageNumber} = 4</msg>
+<status status="PASS" starttime="20200903 00:50:08.527" endtime="20200903 00:50:08.528"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:06.751" endtime="20200903 00:50:08.528"></status>
+</kw>
+<kw name="${pageNumber} = 4" type="foritem">
+<kw name="Get Element Count" library="Selenium2Library">
+<doc>Returns the number of elements matching ``locator``.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<assign>
+<var>${totalResults}</var>
+</assign>
+<msg timestamp="20200903 00:50:08.571" level="INFO">${totalResults} = 5</msg>
+<status status="PASS" starttime="20200903 00:50:08.529" endtime="20200903 00:50:08.572"></status>
+</kw>
+<kw name="Check Filters in Single Results">
+<arguments>
+<arg>${totalResults}</arg>
+</arguments>
+<kw name="${singleResult} IN RANGE [ ${totalResults}-3 ]" type="for">
+<kw name="${singleResult} = 0" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:08.618" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:08.573" endtime="20200903 00:50:08.619"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:08.620" level="INFO">${singleResult} = 1</msg>
+<status status="PASS" starttime="20200903 00:50:08.619" endtime="20200903 00:50:08.622"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:08.573" endtime="20200903 00:50:08.622"></status>
+</kw>
+<kw name="${singleResult} = 1" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:08.808" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:08.622" endtime="20200903 00:50:08.809"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:08.810" level="INFO">${singleResult} = 2</msg>
+<status status="PASS" starttime="20200903 00:50:08.809" endtime="20200903 00:50:08.810"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:08.622" endtime="20200903 00:50:08.810"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:08.573" endtime="20200903 00:50:08.810"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:08.572" endtime="20200903 00:50:08.810"></status>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>Element Should Be Visible</arg>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20200903 00:50:09.189" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-9.png"&gt;&lt;img src="selenium-screenshot-9.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20200903 00:50:08.835" endtime="20200903 00:50:09.190"></status>
+</kw>
+<msg timestamp="20200903 00:50:09.192" level="FAIL">Element with locator 'css=li[class*="disabled a-last"]' not found.</msg>
+<status status="FAIL" starttime="20200903 00:50:08.812" endtime="20200903 00:50:09.192"></status>
+</kw>
+<msg timestamp="20200903 00:50:09.192" level="INFO">${status} = False</msg>
+<status status="PASS" starttime="20200903 00:50:08.811" endtime="20200903 00:50:09.192"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${status}==False</arg>
+<arg>Click Element</arg>
+<arg>${NextButton}</arg>
+<arg>ELSE</arg>
+<arg>Exit For Loop</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${NextButton}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:09.194" level="INFO">Clicking element 'css=.a-last'.</msg>
+<status status="PASS" starttime="20200903 00:50:09.194" endtime="20200903 00:50:09.501"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:09.193" endtime="20200903 00:50:09.501"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<status status="PASS" starttime="20200903 00:50:09.501" endtime="20200903 00:50:10.161"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${pageNumber}+1</arg>
+</arguments>
+<assign>
+<var>${pageNumber}</var>
+</assign>
+<msg timestamp="20200903 00:50:10.161" level="INFO">${pageNumber} = 5</msg>
+<status status="PASS" starttime="20200903 00:50:10.161" endtime="20200903 00:50:10.161"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:08.529" endtime="20200903 00:50:10.161"></status>
+</kw>
+<kw name="${pageNumber} = 5" type="foritem">
+<kw name="Get Element Count" library="Selenium2Library">
+<doc>Returns the number of elements matching ``locator``.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<assign>
+<var>${totalResults}</var>
+</assign>
+<msg timestamp="20200903 00:50:10.192" level="INFO">${totalResults} = 4</msg>
+<status status="PASS" starttime="20200903 00:50:10.161" endtime="20200903 00:50:10.192"></status>
+</kw>
+<kw name="Check Filters in Single Results">
+<arguments>
+<arg>${totalResults}</arg>
+</arguments>
+<kw name="${singleResult} IN RANGE [ ${totalResults}-3 ]" type="for">
+<kw name="${singleResult} = 0" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:10.261" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:10.192" endtime="20200903 00:50:10.261"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:10.261" level="INFO">${singleResult} = 1</msg>
+<status status="PASS" starttime="20200903 00:50:10.261" endtime="20200903 00:50:10.261"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:10.192" endtime="20200903 00:50:10.261"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:10.192" endtime="20200903 00:50:10.261"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:10.192" endtime="20200903 00:50:10.261"></status>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>Element Should Be Visible</arg>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20200903 00:50:10.762" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-10.png"&gt;&lt;img src="selenium-screenshot-10.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20200903 00:50:10.508" endtime="20200903 00:50:10.762"></status>
+</kw>
+<msg timestamp="20200903 00:50:10.762" level="FAIL">Element with locator 'css=li[class*="disabled a-last"]' not found.</msg>
+<status status="FAIL" starttime="20200903 00:50:10.261" endtime="20200903 00:50:10.762"></status>
+</kw>
+<msg timestamp="20200903 00:50:10.762" level="INFO">${status} = False</msg>
+<status status="PASS" starttime="20200903 00:50:10.261" endtime="20200903 00:50:10.762"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${status}==False</arg>
+<arg>Click Element</arg>
+<arg>${NextButton}</arg>
+<arg>ELSE</arg>
+<arg>Exit For Loop</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${NextButton}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:10.762" level="INFO">Clicking element 'css=.a-last'.</msg>
+<status status="PASS" starttime="20200903 00:50:10.762" endtime="20200903 00:50:11.079"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:10.762" endtime="20200903 00:50:11.079"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<status status="PASS" starttime="20200903 00:50:11.079" endtime="20200903 00:50:11.758"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${pageNumber}+1</arg>
+</arguments>
+<assign>
+<var>${pageNumber}</var>
+</assign>
+<msg timestamp="20200903 00:50:11.765" level="INFO">${pageNumber} = 6</msg>
+<status status="PASS" starttime="20200903 00:50:11.758" endtime="20200903 00:50:11.765"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:10.161" endtime="20200903 00:50:11.765"></status>
+</kw>
+<kw name="${pageNumber} = 6" type="foritem">
+<kw name="Get Element Count" library="Selenium2Library">
+<doc>Returns the number of elements matching ``locator``.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<assign>
+<var>${totalResults}</var>
+</assign>
+<msg timestamp="20200903 00:50:11.966" level="INFO">${totalResults} = 21</msg>
+<status status="PASS" starttime="20200903 00:50:11.765" endtime="20200903 00:50:11.966"></status>
+</kw>
+<kw name="Check Filters in Single Results">
+<arguments>
+<arg>${totalResults}</arg>
+</arguments>
+<kw name="${singleResult} IN RANGE [ ${totalResults}-3 ]" type="for">
+<kw name="${singleResult} = 0" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.028" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:11.966" endtime="20200903 00:50:12.028"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.044" level="INFO">${singleResult} = 1</msg>
+<status status="PASS" starttime="20200903 00:50:12.044" endtime="20200903 00:50:12.044"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:11.966" endtime="20200903 00:50:12.044"></status>
+</kw>
+<kw name="${singleResult} = 1" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.217" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.044" endtime="20200903 00:50:12.217"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.217" level="INFO">${singleResult} = 2</msg>
+<status status="PASS" starttime="20200903 00:50:12.217" endtime="20200903 00:50:12.217"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.044" endtime="20200903 00:50:12.217"></status>
+</kw>
+<kw name="${singleResult} = 2" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.266" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.218" endtime="20200903 00:50:12.266"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.266" level="INFO">${singleResult} = 3</msg>
+<status status="PASS" starttime="20200903 00:50:12.266" endtime="20200903 00:50:12.266"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.218" endtime="20200903 00:50:12.266"></status>
+</kw>
+<kw name="${singleResult} = 3" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.329" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.266" endtime="20200903 00:50:12.329"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.329" level="INFO">${singleResult} = 4</msg>
+<status status="PASS" starttime="20200903 00:50:12.329" endtime="20200903 00:50:12.329"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.266" endtime="20200903 00:50:12.329"></status>
+</kw>
+<kw name="${singleResult} = 4" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.382" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.329" endtime="20200903 00:50:12.382"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.382" level="INFO">${singleResult} = 5</msg>
+<status status="PASS" starttime="20200903 00:50:12.382" endtime="20200903 00:50:12.382"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.329" endtime="20200903 00:50:12.382"></status>
+</kw>
+<kw name="${singleResult} = 5" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.414" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.382" endtime="20200903 00:50:12.414"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.414" level="INFO">${singleResult} = 6</msg>
+<status status="PASS" starttime="20200903 00:50:12.414" endtime="20200903 00:50:12.414"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.382" endtime="20200903 00:50:12.414"></status>
+</kw>
+<kw name="${singleResult} = 6" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.445" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.414" endtime="20200903 00:50:12.445"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.445" level="INFO">${singleResult} = 7</msg>
+<status status="PASS" starttime="20200903 00:50:12.445" endtime="20200903 00:50:12.445"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.414" endtime="20200903 00:50:12.445"></status>
+</kw>
+<kw name="${singleResult} = 7" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.467" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.445" endtime="20200903 00:50:12.467"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.467" level="INFO">${singleResult} = 8</msg>
+<status status="PASS" starttime="20200903 00:50:12.467" endtime="20200903 00:50:12.467"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.445" endtime="20200903 00:50:12.467"></status>
+</kw>
+<kw name="${singleResult} = 8" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.498" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.467" endtime="20200903 00:50:12.498"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.498" level="INFO">${singleResult} = 9</msg>
+<status status="PASS" starttime="20200903 00:50:12.498" endtime="20200903 00:50:12.498"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.467" endtime="20200903 00:50:12.498"></status>
+</kw>
+<kw name="${singleResult} = 9" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.529" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.498" endtime="20200903 00:50:12.529"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.529" level="INFO">${singleResult} = 10</msg>
+<status status="PASS" starttime="20200903 00:50:12.529" endtime="20200903 00:50:12.529"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.498" endtime="20200903 00:50:12.529"></status>
+</kw>
+<kw name="${singleResult} = 10" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.561" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.529" endtime="20200903 00:50:12.561"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.561" level="INFO">${singleResult} = 11</msg>
+<status status="PASS" starttime="20200903 00:50:12.561" endtime="20200903 00:50:12.561"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.529" endtime="20200903 00:50:12.561"></status>
+</kw>
+<kw name="${singleResult} = 11" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.583" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.561" endtime="20200903 00:50:12.583"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.583" level="INFO">${singleResult} = 12</msg>
+<status status="PASS" starttime="20200903 00:50:12.583" endtime="20200903 00:50:12.583"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.561" endtime="20200903 00:50:12.583"></status>
+</kw>
+<kw name="${singleResult} = 12" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.614" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.583" endtime="20200903 00:50:12.614"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.614" level="INFO">${singleResult} = 13</msg>
+<status status="PASS" starttime="20200903 00:50:12.614" endtime="20200903 00:50:12.614"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.583" endtime="20200903 00:50:12.614"></status>
+</kw>
+<kw name="${singleResult} = 13" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.630" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.614" endtime="20200903 00:50:12.630"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.630" level="INFO">${singleResult} = 14</msg>
+<status status="PASS" starttime="20200903 00:50:12.630" endtime="20200903 00:50:12.630"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.614" endtime="20200903 00:50:12.630"></status>
+</kw>
+<kw name="${singleResult} = 14" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.668" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.630" endtime="20200903 00:50:12.668"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.668" level="INFO">${singleResult} = 15</msg>
+<status status="PASS" starttime="20200903 00:50:12.668" endtime="20200903 00:50:12.668"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.630" endtime="20200903 00:50:12.668"></status>
+</kw>
+<kw name="${singleResult} = 15" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.683" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.668" endtime="20200903 00:50:12.683"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.699" level="INFO">${singleResult} = 16</msg>
+<status status="PASS" starttime="20200903 00:50:12.683" endtime="20200903 00:50:12.699"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.668" endtime="20200903 00:50:12.699"></status>
+</kw>
+<kw name="${singleResult} = 16" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.714" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.699" endtime="20200903 00:50:12.714"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.714" level="INFO">${singleResult} = 17</msg>
+<status status="PASS" starttime="20200903 00:50:12.714" endtime="20200903 00:50:12.714"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.699" endtime="20200903 00:50:12.714"></status>
+</kw>
+<kw name="${singleResult} = 17" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.746" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:12.714" endtime="20200903 00:50:12.746"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:12.746" level="INFO">${singleResult} = 18</msg>
+<status status="PASS" starttime="20200903 00:50:12.746" endtime="20200903 00:50:12.746"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.714" endtime="20200903 00:50:12.746"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:11.966" endtime="20200903 00:50:12.746"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:11.966" endtime="20200903 00:50:12.746"></status>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>Element Should Be Visible</arg>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20200903 00:50:12.862" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-11.png"&gt;&lt;img src="selenium-screenshot-11.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20200903 00:50:12.746" endtime="20200903 00:50:12.862"></status>
+</kw>
+<msg timestamp="20200903 00:50:12.862" level="FAIL">Element with locator 'css=li[class*="disabled a-last"]' not found.</msg>
+<status status="FAIL" starttime="20200903 00:50:12.746" endtime="20200903 00:50:12.862"></status>
+</kw>
+<msg timestamp="20200903 00:50:12.862" level="INFO">${status} = False</msg>
+<status status="PASS" starttime="20200903 00:50:12.746" endtime="20200903 00:50:12.862"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${status}==False</arg>
+<arg>Click Element</arg>
+<arg>${NextButton}</arg>
+<arg>ELSE</arg>
+<arg>Exit For Loop</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${NextButton}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:12.862" level="INFO">Clicking element 'css=.a-last'.</msg>
+<status status="PASS" starttime="20200903 00:50:12.862" endtime="20200903 00:50:13.147"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:12.862" endtime="20200903 00:50:13.147"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<status status="PASS" starttime="20200903 00:50:13.147" endtime="20200903 00:50:13.849"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${pageNumber}+1</arg>
+</arguments>
+<assign>
+<var>${pageNumber}</var>
+</assign>
+<msg timestamp="20200903 00:50:13.849" level="INFO">${pageNumber} = 7</msg>
+<status status="PASS" starttime="20200903 00:50:13.849" endtime="20200903 00:50:13.849"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:11.765" endtime="20200903 00:50:13.849"></status>
+</kw>
+<kw name="${pageNumber} = 7" type="foritem">
+<kw name="Get Element Count" library="Selenium2Library">
+<doc>Returns the number of elements matching ``locator``.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<assign>
+<var>${totalResults}</var>
+</assign>
+<msg timestamp="20200903 00:50:13.972" level="INFO">${totalResults} = 22</msg>
+<status status="PASS" starttime="20200903 00:50:13.849" endtime="20200903 00:50:13.972"></status>
+</kw>
+<kw name="Check Filters in Single Results">
+<arguments>
+<arg>${totalResults}</arg>
+</arguments>
+<kw name="${singleResult} IN RANGE [ ${totalResults}-3 ]" type="for">
+<kw name="${singleResult} = 0" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.065" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:13.972" endtime="20200903 00:50:14.065"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.065" level="INFO">${singleResult} = 1</msg>
+<status status="PASS" starttime="20200903 00:50:14.065" endtime="20200903 00:50:14.065"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:13.972" endtime="20200903 00:50:14.065"></status>
+</kw>
+<kw name="${singleResult} = 1" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.103" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.065" endtime="20200903 00:50:14.103"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.103" level="INFO">${singleResult} = 2</msg>
+<status status="PASS" starttime="20200903 00:50:14.103" endtime="20200903 00:50:14.103"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.065" endtime="20200903 00:50:14.103"></status>
+</kw>
+<kw name="${singleResult} = 2" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.134" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.103" endtime="20200903 00:50:14.134"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.134" level="INFO">${singleResult} = 3</msg>
+<status status="PASS" starttime="20200903 00:50:14.134" endtime="20200903 00:50:14.134"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.103" endtime="20200903 00:50:14.134"></status>
+</kw>
+<kw name="${singleResult} = 3" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.172" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.134" endtime="20200903 00:50:14.172"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.172" level="INFO">${singleResult} = 4</msg>
+<status status="PASS" starttime="20200903 00:50:14.172" endtime="20200903 00:50:14.172"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.134" endtime="20200903 00:50:14.172"></status>
+</kw>
+<kw name="${singleResult} = 4" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.203" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.172" endtime="20200903 00:50:14.203"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.203" level="INFO">${singleResult} = 5</msg>
+<status status="PASS" starttime="20200903 00:50:14.203" endtime="20200903 00:50:14.203"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.172" endtime="20200903 00:50:14.203"></status>
+</kw>
+<kw name="${singleResult} = 5" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.272" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.203" endtime="20200903 00:50:14.272"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.272" level="INFO">${singleResult} = 6</msg>
+<status status="PASS" starttime="20200903 00:50:14.272" endtime="20200903 00:50:14.272"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.203" endtime="20200903 00:50:14.272"></status>
+</kw>
+<kw name="${singleResult} = 6" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.319" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.272" endtime="20200903 00:50:14.319"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.319" level="INFO">${singleResult} = 7</msg>
+<status status="PASS" starttime="20200903 00:50:14.319" endtime="20200903 00:50:14.319"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.272" endtime="20200903 00:50:14.319"></status>
+</kw>
+<kw name="${singleResult} = 7" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.373" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.319" endtime="20200903 00:50:14.373"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.388" level="INFO">${singleResult} = 8</msg>
+<status status="PASS" starttime="20200903 00:50:14.373" endtime="20200903 00:50:14.388"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.319" endtime="20200903 00:50:14.388"></status>
+</kw>
+<kw name="${singleResult} = 8" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.435" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.388" endtime="20200903 00:50:14.435"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.435" level="INFO">${singleResult} = 9</msg>
+<status status="PASS" starttime="20200903 00:50:14.435" endtime="20200903 00:50:14.435"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.388" endtime="20200903 00:50:14.435"></status>
+</kw>
+<kw name="${singleResult} = 9" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.567" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.435" endtime="20200903 00:50:14.567"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.567" level="INFO">${singleResult} = 10</msg>
+<status status="PASS" starttime="20200903 00:50:14.567" endtime="20200903 00:50:14.567"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.435" endtime="20200903 00:50:14.567"></status>
+</kw>
+<kw name="${singleResult} = 10" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.589" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.567" endtime="20200903 00:50:14.589"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.589" level="INFO">${singleResult} = 11</msg>
+<status status="PASS" starttime="20200903 00:50:14.589" endtime="20200903 00:50:14.589"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.567" endtime="20200903 00:50:14.589"></status>
+</kw>
+<kw name="${singleResult} = 11" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.620" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.589" endtime="20200903 00:50:14.620"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.620" level="INFO">${singleResult} = 12</msg>
+<status status="PASS" starttime="20200903 00:50:14.620" endtime="20200903 00:50:14.620"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.589" endtime="20200903 00:50:14.620"></status>
+</kw>
+<kw name="${singleResult} = 12" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.652" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.620" endtime="20200903 00:50:14.652"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.652" level="INFO">${singleResult} = 13</msg>
+<status status="PASS" starttime="20200903 00:50:14.652" endtime="20200903 00:50:14.652"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.620" endtime="20200903 00:50:14.652"></status>
+</kw>
+<kw name="${singleResult} = 13" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.674" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.652" endtime="20200903 00:50:14.674"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.674" level="INFO">${singleResult} = 14</msg>
+<status status="PASS" starttime="20200903 00:50:14.674" endtime="20200903 00:50:14.674"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.652" endtime="20200903 00:50:14.674"></status>
+</kw>
+<kw name="${singleResult} = 14" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.689" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.674" endtime="20200903 00:50:14.689"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.689" level="INFO">${singleResult} = 15</msg>
+<status status="PASS" starttime="20200903 00:50:14.689" endtime="20200903 00:50:14.689"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.674" endtime="20200903 00:50:14.689"></status>
+</kw>
+<kw name="${singleResult} = 15" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.721" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.689" endtime="20200903 00:50:14.721"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.721" level="INFO">${singleResult} = 16</msg>
+<status status="PASS" starttime="20200903 00:50:14.721" endtime="20200903 00:50:14.721"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.689" endtime="20200903 00:50:14.721"></status>
+</kw>
+<kw name="${singleResult} = 16" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.752" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.721" endtime="20200903 00:50:14.752"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.752" level="INFO">${singleResult} = 17</msg>
+<status status="PASS" starttime="20200903 00:50:14.752" endtime="20200903 00:50:14.752"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.721" endtime="20200903 00:50:14.752"></status>
+</kw>
+<kw name="${singleResult} = 17" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.774" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.752" endtime="20200903 00:50:14.774"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.774" level="INFO">${singleResult} = 18</msg>
+<status status="PASS" starttime="20200903 00:50:14.774" endtime="20200903 00:50:14.774"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.752" endtime="20200903 00:50:14.774"></status>
+</kw>
+<kw name="${singleResult} = 18" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.805" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:14.774" endtime="20200903 00:50:14.805"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:14.805" level="INFO">${singleResult} = 19</msg>
+<status status="PASS" starttime="20200903 00:50:14.805" endtime="20200903 00:50:14.805"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.774" endtime="20200903 00:50:14.805"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:13.972" endtime="20200903 00:50:14.805"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:13.972" endtime="20200903 00:50:14.805"></status>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>Element Should Be Visible</arg>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20200903 00:50:14.921" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-12.png"&gt;&lt;img src="selenium-screenshot-12.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20200903 00:50:14.805" endtime="20200903 00:50:14.921"></status>
+</kw>
+<msg timestamp="20200903 00:50:14.921" level="FAIL">Element with locator 'css=li[class*="disabled a-last"]' not found.</msg>
+<status status="FAIL" starttime="20200903 00:50:14.805" endtime="20200903 00:50:14.921"></status>
+</kw>
+<msg timestamp="20200903 00:50:14.921" level="INFO">${status} = False</msg>
+<status status="PASS" starttime="20200903 00:50:14.805" endtime="20200903 00:50:14.921"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${status}==False</arg>
+<arg>Click Element</arg>
+<arg>${NextButton}</arg>
+<arg>ELSE</arg>
+<arg>Exit For Loop</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${NextButton}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:14.921" level="INFO">Clicking element 'css=.a-last'.</msg>
+<status status="PASS" starttime="20200903 00:50:14.921" endtime="20200903 00:50:15.222"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:14.921" endtime="20200903 00:50:15.222"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<status status="PASS" starttime="20200903 00:50:15.222" endtime="20200903 00:50:15.955"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${pageNumber}+1</arg>
+</arguments>
+<assign>
+<var>${pageNumber}</var>
+</assign>
+<msg timestamp="20200903 00:50:15.955" level="INFO">${pageNumber} = 8</msg>
+<status status="PASS" starttime="20200903 00:50:15.955" endtime="20200903 00:50:15.955"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:13.849" endtime="20200903 00:50:15.955"></status>
+</kw>
+<kw name="${pageNumber} = 8" type="foritem">
+<kw name="Get Element Count" library="Selenium2Library">
+<doc>Returns the number of elements matching ``locator``.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<assign>
+<var>${totalResults}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.224" level="INFO">${totalResults} = 27</msg>
+<status status="PASS" starttime="20200903 00:50:15.955" endtime="20200903 00:50:16.224"></status>
+</kw>
+<kw name="Check Filters in Single Results">
+<arguments>
+<arg>${totalResults}</arg>
+</arguments>
+<kw name="${singleResult} IN RANGE [ ${totalResults}-3 ]" type="for">
+<kw name="${singleResult} = 0" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.309" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.224" endtime="20200903 00:50:16.309"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.309" level="INFO">${singleResult} = 1</msg>
+<status status="PASS" starttime="20200903 00:50:16.309" endtime="20200903 00:50:16.309"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.224" endtime="20200903 00:50:16.309"></status>
+</kw>
+<kw name="${singleResult} = 1" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.378" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.309" endtime="20200903 00:50:16.378"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.378" level="INFO">${singleResult} = 2</msg>
+<status status="PASS" starttime="20200903 00:50:16.378" endtime="20200903 00:50:16.378"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.309" endtime="20200903 00:50:16.378"></status>
+</kw>
+<kw name="${singleResult} = 2" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.425" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.378" endtime="20200903 00:50:16.425"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.425" level="INFO">${singleResult} = 3</msg>
+<status status="PASS" starttime="20200903 00:50:16.425" endtime="20200903 00:50:16.425"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.378" endtime="20200903 00:50:16.425"></status>
+</kw>
+<kw name="${singleResult} = 3" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.478" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.425" endtime="20200903 00:50:16.478"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.478" level="INFO">${singleResult} = 4</msg>
+<status status="PASS" starttime="20200903 00:50:16.478" endtime="20200903 00:50:16.478"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.425" endtime="20200903 00:50:16.478"></status>
+</kw>
+<kw name="${singleResult} = 4" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.525" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.478" endtime="20200903 00:50:16.525"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.525" level="INFO">${singleResult} = 5</msg>
+<status status="PASS" starttime="20200903 00:50:16.525" endtime="20200903 00:50:16.525"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.478" endtime="20200903 00:50:16.525"></status>
+</kw>
+<kw name="${singleResult} = 5" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.556" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.525" endtime="20200903 00:50:16.556"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.556" level="INFO">${singleResult} = 6</msg>
+<status status="PASS" starttime="20200903 00:50:16.556" endtime="20200903 00:50:16.556"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.525" endtime="20200903 00:50:16.556"></status>
+</kw>
+<kw name="${singleResult} = 6" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.594" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.556" endtime="20200903 00:50:16.594"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.594" level="INFO">${singleResult} = 7</msg>
+<status status="PASS" starttime="20200903 00:50:16.594" endtime="20200903 00:50:16.594"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.556" endtime="20200903 00:50:16.594"></status>
+</kw>
+<kw name="${singleResult} = 7" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.626" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.594" endtime="20200903 00:50:16.626"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.626" level="INFO">${singleResult} = 8</msg>
+<status status="PASS" starttime="20200903 00:50:16.626" endtime="20200903 00:50:16.626"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.594" endtime="20200903 00:50:16.626"></status>
+</kw>
+<kw name="${singleResult} = 8" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.657" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.626" endtime="20200903 00:50:16.657"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.657" level="INFO">${singleResult} = 9</msg>
+<status status="PASS" starttime="20200903 00:50:16.657" endtime="20200903 00:50:16.657"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.626" endtime="20200903 00:50:16.657"></status>
+</kw>
+<kw name="${singleResult} = 9" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.679" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.657" endtime="20200903 00:50:16.679"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.679" level="INFO">${singleResult} = 10</msg>
+<status status="PASS" starttime="20200903 00:50:16.679" endtime="20200903 00:50:16.679"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.657" endtime="20200903 00:50:16.679"></status>
+</kw>
+<kw name="${singleResult} = 10" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.710" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.679" endtime="20200903 00:50:16.710"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.710" level="INFO">${singleResult} = 11</msg>
+<status status="PASS" starttime="20200903 00:50:16.710" endtime="20200903 00:50:16.710"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.679" endtime="20200903 00:50:16.710"></status>
+</kw>
+<kw name="${singleResult} = 11" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.726" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.710" endtime="20200903 00:50:16.726"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.726" level="INFO">${singleResult} = 12</msg>
+<status status="PASS" starttime="20200903 00:50:16.726" endtime="20200903 00:50:16.726"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.710" endtime="20200903 00:50:16.726"></status>
+</kw>
+<kw name="${singleResult} = 12" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.757" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.726" endtime="20200903 00:50:16.757"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.757" level="INFO">${singleResult} = 13</msg>
+<status status="PASS" starttime="20200903 00:50:16.757" endtime="20200903 00:50:16.757"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.726" endtime="20200903 00:50:16.757"></status>
+</kw>
+<kw name="${singleResult} = 13" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.779" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.757" endtime="20200903 00:50:16.779"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.779" level="INFO">${singleResult} = 14</msg>
+<status status="PASS" starttime="20200903 00:50:16.779" endtime="20200903 00:50:16.779"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.757" endtime="20200903 00:50:16.779"></status>
+</kw>
+<kw name="${singleResult} = 14" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.810" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.779" endtime="20200903 00:50:16.810"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.810" level="INFO">${singleResult} = 15</msg>
+<status status="PASS" starttime="20200903 00:50:16.810" endtime="20200903 00:50:16.810"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.779" endtime="20200903 00:50:16.810"></status>
+</kw>
+<kw name="${singleResult} = 15" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.826" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.810" endtime="20200903 00:50:16.826"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.826" level="INFO">${singleResult} = 16</msg>
+<status status="PASS" starttime="20200903 00:50:16.826" endtime="20200903 00:50:16.826"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.810" endtime="20200903 00:50:16.826"></status>
+</kw>
+<kw name="${singleResult} = 16" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.857" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.826" endtime="20200903 00:50:16.857"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.857" level="INFO">${singleResult} = 17</msg>
+<status status="PASS" starttime="20200903 00:50:16.857" endtime="20200903 00:50:16.857"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.826" endtime="20200903 00:50:16.857"></status>
+</kw>
+<kw name="${singleResult} = 17" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.879" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.857" endtime="20200903 00:50:16.879"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.879" level="INFO">${singleResult} = 18</msg>
+<status status="PASS" starttime="20200903 00:50:16.879" endtime="20200903 00:50:16.879"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.857" endtime="20200903 00:50:16.879"></status>
+</kw>
+<kw name="${singleResult} = 18" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.911" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.879" endtime="20200903 00:50:16.911"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.911" level="INFO">${singleResult} = 19</msg>
+<status status="PASS" starttime="20200903 00:50:16.911" endtime="20200903 00:50:16.911"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.879" endtime="20200903 00:50:16.911"></status>
+</kw>
+<kw name="${singleResult} = 19" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.942" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.911" endtime="20200903 00:50:16.942"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.942" level="INFO">${singleResult} = 20</msg>
+<status status="PASS" starttime="20200903 00:50:16.942" endtime="20200903 00:50:16.942"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.911" endtime="20200903 00:50:16.942"></status>
+</kw>
+<kw name="${singleResult} = 20" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.958" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.942" endtime="20200903 00:50:16.958"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.958" level="INFO">${singleResult} = 21</msg>
+<status status="PASS" starttime="20200903 00:50:16.958" endtime="20200903 00:50:16.958"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.942" endtime="20200903 00:50:16.958"></status>
+</kw>
+<kw name="${singleResult} = 21" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:16.995" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.973" endtime="20200903 00:50:16.995"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:16.995" level="INFO">${singleResult} = 22</msg>
+<status status="PASS" starttime="20200903 00:50:16.995" endtime="20200903 00:50:16.995"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.958" endtime="20200903 00:50:16.995"></status>
+</kw>
+<kw name="${singleResult} = 22" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:17.027" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:16.995" endtime="20200903 00:50:17.027"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:17.027" level="INFO">${singleResult} = 23</msg>
+<status status="PASS" starttime="20200903 00:50:17.027" endtime="20200903 00:50:17.027"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.995" endtime="20200903 00:50:17.027"></status>
+</kw>
+<kw name="${singleResult} = 23" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:17.042" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:17.027" endtime="20200903 00:50:17.042"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:17.042" level="INFO">${singleResult} = 24</msg>
+<status status="PASS" starttime="20200903 00:50:17.042" endtime="20200903 00:50:17.042"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:17.027" endtime="20200903 00:50:17.042"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.224" endtime="20200903 00:50:17.042"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:16.224" endtime="20200903 00:50:17.042"></status>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>Element Should Be Visible</arg>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20200903 00:50:17.180" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-13.png"&gt;&lt;img src="selenium-screenshot-13.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20200903 00:50:17.058" endtime="20200903 00:50:17.180"></status>
+</kw>
+<msg timestamp="20200903 00:50:17.196" level="FAIL">Element with locator 'css=li[class*="disabled a-last"]' not found.</msg>
+<status status="FAIL" starttime="20200903 00:50:17.042" endtime="20200903 00:50:17.196"></status>
+</kw>
+<msg timestamp="20200903 00:50:17.196" level="INFO">${status} = False</msg>
+<status status="PASS" starttime="20200903 00:50:17.042" endtime="20200903 00:50:17.196"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${status}==False</arg>
+<arg>Click Element</arg>
+<arg>${NextButton}</arg>
+<arg>ELSE</arg>
+<arg>Exit For Loop</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${NextButton}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:17.196" level="INFO">Clicking element 'css=.a-last'.</msg>
+<status status="PASS" starttime="20200903 00:50:17.196" endtime="20200903 00:50:17.497"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:17.196" endtime="20200903 00:50:17.497"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<status status="PASS" starttime="20200903 00:50:17.497" endtime="20200903 00:50:18.165"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${pageNumber}+1</arg>
+</arguments>
+<assign>
+<var>${pageNumber}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.165" level="INFO">${pageNumber} = 9</msg>
+<status status="PASS" starttime="20200903 00:50:18.165" endtime="20200903 00:50:18.165"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:15.955" endtime="20200903 00:50:18.165"></status>
+</kw>
+<kw name="${pageNumber} = 9" type="foritem">
+<kw name="Get Element Count" library="Selenium2Library">
+<doc>Returns the number of elements matching ``locator``.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<assign>
+<var>${totalResults}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.350" level="INFO">${totalResults} = 24</msg>
+<status status="PASS" starttime="20200903 00:50:18.165" endtime="20200903 00:50:18.350"></status>
+</kw>
+<kw name="Check Filters in Single Results">
+<arguments>
+<arg>${totalResults}</arg>
+</arguments>
+<kw name="${singleResult} IN RANGE [ ${totalResults}-3 ]" type="for">
+<kw name="${singleResult} = 0" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:18.566" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:18.350" endtime="20200903 00:50:18.566"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.566" level="INFO">${singleResult} = 1</msg>
+<status status="PASS" starttime="20200903 00:50:18.566" endtime="20200903 00:50:18.566"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.350" endtime="20200903 00:50:18.566"></status>
+</kw>
+<kw name="${singleResult} = 1" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:18.620" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:18.566" endtime="20200903 00:50:18.620"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.620" level="INFO">${singleResult} = 2</msg>
+<status status="PASS" starttime="20200903 00:50:18.620" endtime="20200903 00:50:18.620"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.566" endtime="20200903 00:50:18.620"></status>
+</kw>
+<kw name="${singleResult} = 2" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:18.682" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:18.635" endtime="20200903 00:50:18.682"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.682" level="INFO">${singleResult} = 3</msg>
+<status status="PASS" starttime="20200903 00:50:18.682" endtime="20200903 00:50:18.682"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.620" endtime="20200903 00:50:18.682"></status>
+</kw>
+<kw name="${singleResult} = 3" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:18.736" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:18.682" endtime="20200903 00:50:18.736"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.736" level="INFO">${singleResult} = 4</msg>
+<status status="PASS" starttime="20200903 00:50:18.736" endtime="20200903 00:50:18.736"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.682" endtime="20200903 00:50:18.736"></status>
+</kw>
+<kw name="${singleResult} = 4" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:18.782" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:18.736" endtime="20200903 00:50:18.782"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.782" level="INFO">${singleResult} = 5</msg>
+<status status="PASS" starttime="20200903 00:50:18.782" endtime="20200903 00:50:18.782"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.736" endtime="20200903 00:50:18.782"></status>
+</kw>
+<kw name="${singleResult} = 5" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:18.820" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:18.782" endtime="20200903 00:50:18.820"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.820" level="INFO">${singleResult} = 6</msg>
+<status status="PASS" starttime="20200903 00:50:18.820" endtime="20200903 00:50:18.820"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.782" endtime="20200903 00:50:18.820"></status>
+</kw>
+<kw name="${singleResult} = 6" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:18.851" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:18.820" endtime="20200903 00:50:18.851"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.851" level="INFO">${singleResult} = 7</msg>
+<status status="PASS" starttime="20200903 00:50:18.851" endtime="20200903 00:50:18.851"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.820" endtime="20200903 00:50:18.851"></status>
+</kw>
+<kw name="${singleResult} = 7" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:18.883" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:18.851" endtime="20200903 00:50:18.883"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.883" level="INFO">${singleResult} = 8</msg>
+<status status="PASS" starttime="20200903 00:50:18.883" endtime="20200903 00:50:18.883"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.851" endtime="20200903 00:50:18.883"></status>
+</kw>
+<kw name="${singleResult} = 8" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:18.905" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:18.883" endtime="20200903 00:50:18.905"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.905" level="INFO">${singleResult} = 9</msg>
+<status status="PASS" starttime="20200903 00:50:18.905" endtime="20200903 00:50:18.905"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.883" endtime="20200903 00:50:18.905"></status>
+</kw>
+<kw name="${singleResult} = 9" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:18.920" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:18.905" endtime="20200903 00:50:18.920"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.920" level="INFO">${singleResult} = 10</msg>
+<status status="PASS" starttime="20200903 00:50:18.920" endtime="20200903 00:50:18.920"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.905" endtime="20200903 00:50:18.920"></status>
+</kw>
+<kw name="${singleResult} = 10" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:18.952" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:18.920" endtime="20200903 00:50:18.952"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.952" level="INFO">${singleResult} = 11</msg>
+<status status="PASS" starttime="20200903 00:50:18.952" endtime="20200903 00:50:18.952"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.920" endtime="20200903 00:50:18.952"></status>
+</kw>
+<kw name="${singleResult} = 11" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:18.983" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:18.952" endtime="20200903 00:50:18.983"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:18.983" level="INFO">${singleResult} = 12</msg>
+<status status="PASS" starttime="20200903 00:50:18.983" endtime="20200903 00:50:18.983"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.952" endtime="20200903 00:50:18.983"></status>
+</kw>
+<kw name="${singleResult} = 12" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:19.005" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:18.983" endtime="20200903 00:50:19.005"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:19.005" level="INFO">${singleResult} = 13</msg>
+<status status="PASS" starttime="20200903 00:50:19.005" endtime="20200903 00:50:19.005"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.983" endtime="20200903 00:50:19.005"></status>
+</kw>
+<kw name="${singleResult} = 13" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:19.021" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:19.005" endtime="20200903 00:50:19.021"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:19.021" level="INFO">${singleResult} = 14</msg>
+<status status="PASS" starttime="20200903 00:50:19.021" endtime="20200903 00:50:19.021"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:19.005" endtime="20200903 00:50:19.021"></status>
+</kw>
+<kw name="${singleResult} = 14" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:19.052" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:19.036" endtime="20200903 00:50:19.052"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:19.052" level="INFO">${singleResult} = 15</msg>
+<status status="PASS" starttime="20200903 00:50:19.052" endtime="20200903 00:50:19.052"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:19.021" endtime="20200903 00:50:19.052"></status>
+</kw>
+<kw name="${singleResult} = 15" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:19.090" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:19.052" endtime="20200903 00:50:19.090"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:19.090" level="INFO">${singleResult} = 16</msg>
+<status status="PASS" starttime="20200903 00:50:19.090" endtime="20200903 00:50:19.090"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:19.052" endtime="20200903 00:50:19.090"></status>
+</kw>
+<kw name="${singleResult} = 16" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:19.137" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:19.090" endtime="20200903 00:50:19.137"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:19.137" level="INFO">${singleResult} = 17</msg>
+<status status="PASS" starttime="20200903 00:50:19.137" endtime="20200903 00:50:19.137"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:19.090" endtime="20200903 00:50:19.137"></status>
+</kw>
+<kw name="${singleResult} = 17" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:19.152" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:19.137" endtime="20200903 00:50:19.152"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:19.152" level="INFO">${singleResult} = 18</msg>
+<status status="PASS" starttime="20200903 00:50:19.152" endtime="20200903 00:50:19.152"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:19.137" endtime="20200903 00:50:19.152"></status>
+</kw>
+<kw name="${singleResult} = 18" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:19.190" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:19.152" endtime="20200903 00:50:19.190"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:19.190" level="INFO">${singleResult} = 19</msg>
+<status status="PASS" starttime="20200903 00:50:19.190" endtime="20200903 00:50:19.190"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:19.152" endtime="20200903 00:50:19.190"></status>
+</kw>
+<kw name="${singleResult} = 19" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:19.205" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:19.190" endtime="20200903 00:50:19.205"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:19.205" level="INFO">${singleResult} = 20</msg>
+<status status="PASS" starttime="20200903 00:50:19.205" endtime="20200903 00:50:19.205"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:19.190" endtime="20200903 00:50:19.205"></status>
+</kw>
+<kw name="${singleResult} = 20" type="foritem">
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${SingleFilteredResult}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:19.237" level="INFO">Element 'css=div[class*="s-main-slot"]&gt;div:nth-child(1)' is displayed.</msg>
+<status status="PASS" starttime="20200903 00:50:19.205" endtime="20200903 00:50:19.237"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${singleResult}+1</arg>
+</arguments>
+<assign>
+<var>${singleResult}</var>
+</assign>
+<msg timestamp="20200903 00:50:19.237" level="INFO">${singleResult} = 21</msg>
+<status status="PASS" starttime="20200903 00:50:19.237" endtime="20200903 00:50:19.237"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:19.205" endtime="20200903 00:50:19.237"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.350" endtime="20200903 00:50:19.237"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.350" endtime="20200903 00:50:19.237"></status>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>Element Should Be Visible</arg>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<assign>
+<var>${status}</var>
+</assign>
+<kw name="Element Should Be Visible" library="Selenium2Library">
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<arguments>
+<arg>${NextButtonDisabled}</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20200903 00:50:19.384" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-14.png"&gt;&lt;img src="selenium-screenshot-14.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20200903 00:50:19.237" endtime="20200903 00:50:19.384"></status>
+</kw>
+<msg timestamp="20200903 00:50:19.384" level="FAIL">Element with locator 'css=li[class*="disabled a-last"]' not found.</msg>
+<status status="FAIL" starttime="20200903 00:50:19.237" endtime="20200903 00:50:19.384"></status>
+</kw>
+<msg timestamp="20200903 00:50:19.384" level="INFO">${status} = False</msg>
+<status status="PASS" starttime="20200903 00:50:19.237" endtime="20200903 00:50:19.384"></status>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<arguments>
+<arg>${status}==False</arg>
+<arg>Click Element</arg>
+<arg>${NextButton}</arg>
+<arg>ELSE</arg>
+<arg>Exit For Loop</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${NextButton}</arg>
+</arguments>
+<msg timestamp="20200903 00:50:19.384" level="INFO">Clicking element 'css=.a-last'.</msg>
+<status status="PASS" starttime="20200903 00:50:19.384" endtime="20200903 00:50:19.691"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:19.384" endtime="20200903 00:50:19.691"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>${FilteredResults}</arg>
+</arguments>
+<status status="PASS" starttime="20200903 00:50:19.691" endtime="20200903 00:50:20.341"></status>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>${pageNumber}+1</arg>
+</arguments>
+<assign>
+<var>${pageNumber}</var>
+</assign>
+<msg timestamp="20200903 00:50:20.341" level="INFO">${pageNumber} = 10</msg>
+<status status="PASS" starttime="20200903 00:50:20.341" endtime="20200903 00:50:20.341"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:50:18.165" endtime="20200903 00:50:20.341"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:58.600" endtime="20200903 00:50:20.341"></status>
+</kw>
+<status status="PASS" starttime="20200903 00:49:51.448" endtime="20200903 00:50:20.341" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20200903 00:49:32.120" endtime="20200903 00:50:20.341"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" id="s1" name="TC1 PayOnDelivery and Brand Filter">TC1 PayOnDelivery and Brand Filter</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

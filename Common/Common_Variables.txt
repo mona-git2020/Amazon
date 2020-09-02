@@ -1,0 +1,13 @@
+*** Variables ***
+
+${MobilesButton}=			css = a[href*="mobiles"]
+${PayOnDeliveryCheckbox}=		css = div#leftNav ul:nth-child(12) li span[class*="checkbox"]
+${PayOnDeliverySelectedCheckbox}		css=li[id*="eligible"] span[class*="item"]
+${BrandSection}=			css = #leftNav ul:nth-child(12) li
+${BrandSectionCheckbox}=		css = #leftNav ul:nth-child(12) li:nth-child(1) span[class*="checkbox"]
+${BrandSectionSelectedCheckbox}		css=#brandsRefinements li[id*="OnePlus"] span[class*="item"]
+${ToolbarSection}=			css=h1[class*="toolbar"] div.sg-col-inner
+${FilteredResults}=			css=div[class*="s-main-slot"]>div
+${SingleFilteredResult}=	css=div[class*="s-main-slot"]>div:nth-child(1)
+${NextButton}=				css=.a-last
+${NextButtonDisabled}=		css=li[class*="disabled a-last"]
