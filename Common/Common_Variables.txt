@@ -1,13 +1,24 @@
 *** Variables ***
 
 ${MobilesButton}=			css = a[href*="mobiles"]
-${PayOnDeliveryCheckbox}=		css = div#leftNav ul:nth-child(12) li span[class*="checkbox"]
+${PayOnDeliveryCheckbox}=		css = div#leftNav ul:nth-child(10) li span[class*="checkbox"]
 ${PayOnDeliverySelectedCheckbox}		css=li[id*="eligible"] span[class*="item"]
 ${BrandSection}=			css = #leftNav ul:nth-child(12) li
-${BrandSectionCheckbox}=		css = #leftNav ul:nth-child(12) li:nth-child(1) span[class*="checkbox"]
-${BrandSectionSelectedCheckbox}		css=#brandsRefinements li[id*="OnePlus"] span[class*="item"]
+${BrandSectionCheckbox}=		css = #leftNav div[data-a-input-name*="VALUE"] span[class*="checkbox"]
+${BrandSectionSelectedCheckbox}		css=#brandsRefinements li[id*="VALUE"] span[class*="item"]
 ${ToolbarSection}=			css=h1[class*="toolbar"] div.sg-col-inner
-${FilteredResults}=			css=div[class*="s-main-slot"]>div
-${SingleFilteredResult}=	css=div[class*="s-main-slot"]>div:nth-child(1)
+${FilteredResults}=			css=div[class*="s-main-slot"]>div.sg-col-inner
+${SingleFilteredResult}=	css=div[class*="s-main-slot"]>div:nth-child(NUM)
 ${NextButton}=				css=.a-last
 ${NextButtonDisabled}=		css=li[class*="disabled a-last"]
+${FirstItem}=		css=div[data-index="0"]
+${FirstItemValue}=		css=div[data-index="0"] a[class*="text-normal"]
+${ProductTitle}=		css=span[class*="product-title"]
+${AddToCartButton}=		css=input#add-to-cart-button
+${CartNavButton}=		css=#nav-cart
+
+${SearchProduct}=		css=#twotabsearchtextbox
+${Suggestions}=			css=div#suggestions		
+${TotalSuggestions}=	css=div#suggestions>div	
+${FirstSuggestion}=		css=div#suggestions>div[id*="0"]	
+${SingleSuggestions}=	css=div#suggestions>div[id*="NUM"]	

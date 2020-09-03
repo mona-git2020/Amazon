@@ -1,0 +1,32 @@
+*** Settings ***
+Library		Selenium2Library	
+Library		String
+Library		Collections	
+Resource	../Common/Common_Variables.txt
+Resource	../Resources/Keywords.txt	
+Suite Setup		Open Makemytrip
+Suite Teardown	Close Browser
+
+*** Test Cases ***
+Add Item Into Cart 
+	Wait Until Element is visible		${MobilesButton}
+	Click Element		${MobilesButton}
+	Wait Until Element is visible		${PayOnDeliveryCheckbox}
+	${valueCheckbox}=		Get Text	${PayOnDeliveryCheckbox}
+	Click Element		${PayOnDeliveryCheckbox}
+	Element Should Contain		${ToolbarSection}		${valueCheckbox}
+	Click Element		${FirstItemValue}
+	Switch Window		NEW
+	Wait Until Element is visible		${AddToCartButton}		timeout=15s
+	Wait Until Element is visible		${CartNavButton}	
+	Click Element		${AddToCartButton}	
+
+	
+Verify Item Into Cart
+	Click Element		${CartNavButton}	
+	Element Should Contain		${SubtotalActiveCart}		1	
+	Wait Until Element is visible		${ProductTitle}		timeout=15s	
+	${valueProductTitle}=	Get Text		${ProductTitle}
+	Switch Window		MAIN
+	${valueItem}=		Get Text	${FirstItemValue}	
+	Should Be Equal		${valueItem}	${valueProductTitle}	
