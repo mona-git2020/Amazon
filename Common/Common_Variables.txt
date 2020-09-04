@@ -7,16 +7,16 @@ ${BrandSection}=			css = #leftNav ul:nth-child(12) li
 ${BrandSectionCheckbox}=		css = #leftNav div[data-a-input-name*="VALUE"] span[class*="checkbox"]
 ${BrandSectionSelectedCheckbox}		css=#brandsRefinements li[id*="VALUE"] span[class*="item"]
 ${ToolbarSection}=			css=h1[class*="toolbar"] div.sg-col-inner
-${FilteredResults}=			css=div[class*="s-main-slot"]>div.sg-col-inner
-${SingleFilteredResult}=	css=div[class*="s-main-slot"]>div:nth-child(NUM)
+${FilteredResults}=			css=div[class*="s-main-slot"]>div>div.sg-col-inner
+${SingleFilteredResult}=	css=div[class*="s-main-slot"]>div[data-index="NUM"]>div.sg-col-inner
 ${NextButton}=				css=.a-last
 ${NextButtonDisabled}=		css=li[class*="disabled a-last"]
-${FirstItem}=		css=div[data-index="0"]
+${FirstItem}=			css=div[data-index="0"]
 ${FirstItemValue}=		css=div[data-index="0"] a[class*="text-normal"]
 ${ProductTitle}=		css=span[class*="product-title"]
 ${AddToCartButton}=		css=input#add-to-cart-button
 ${CartNavButton}=		css=#nav-cart
-
+${SubtotalActiveCart}		css=#sc-subtotal-label-activecart
 ${SearchProduct}=		css=#twotabsearchtextbox
 ${Suggestions}=			css=div#suggestions		
 ${TotalSuggestions}=	css=div#suggestions>div	

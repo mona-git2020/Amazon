@@ -16,10 +16,8 @@ Select Pay on Delivery Filter and Check According to Selected Filter
 	Click Element		${PayOnDeliveryCheckbox}
 	Element Should Contain		${ToolbarSection}		${valueCheckbox}
 	Wait Until Element is visible		${FilteredResults}
-	Check Filters For All Pages		${valueCheckbox}
-	: FOR	${pageNumber}		IN RANGE		10	
-	\	${totalResults}=		Get Element Count		${FilteredResults}
-	\	Check Filters in Single Results		${totalResults}
+	: FOR	${pageNumber}		IN RANGE		1000	
+	\	Check Filtered Result Availability
 	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
 	\	Run Keyword If		${status}==False		Click Element		${NextButton}
 	\	...			ELSE		Exit For Loop
@@ -29,7 +27,6 @@ Select Pay on Delivery Filter and Check According to Selected Filter
 	
 Select Brands Filter and Check According to Selected Filter
 	Wait Until Element is visible		${MobilesButton}
-	Click Element		${MobilesButton}
 	${totalFilters}=	Get Element Count		${BrandSection}
 	: For	${filter}		IN RANGE	1	${totalFilters}
 	\	${filternum}=	Convert To String		${filter}	
@@ -55,8 +52,10 @@ Select Brands Filter and Check According to Selected Filter
 	\	Click Element		${BrandSectionSelectedCheckbox}	
 	\	${BrandSectionSelectedCheckbox}=	Replace String		${BrandSectionSelectedCheckbox}		${keys[${num}]}		VALUE		
 	
+*** Keywords ***
+Check Filtered Result Availability
+	${status}=		Element Should Be Visible		${FilteredResults}
 	
 
-	
 	
 	

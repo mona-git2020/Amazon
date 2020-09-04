@@ -11,9 +11,10 @@ Suite Teardown	Close Browser
 Add Item Into Cart 
 	Wait Until Element is visible		${MobilesButton}
 	Click Element		${MobilesButton}
-	Wait Until Element is visible		${PayOnDeliveryCheckbox}
-	${valueCheckbox}=		Get Text	${PayOnDeliveryCheckbox}
-	Click Element		${PayOnDeliveryCheckbox}
+	${BrandSectionCheckbox}=	Replace String		${BrandSectionCheckbox}		VALUE		${enterSearchProductName}
+	Wait Until Element is visible		${BrandSectionCheckbox}
+	${valueCheckbox}=		Get Text	${BrandSectionCheckbox}
+	Click Element		${BrandSectionCheckbox}
 	Element Should Contain		${ToolbarSection}		${valueCheckbox}
 	Click Element		${FirstItemValue}
 	Switch Window		NEW

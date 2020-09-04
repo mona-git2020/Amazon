@@ -19,7 +19,7 @@ Check Filters For All Pages
 Check Filters in Single Results
 	[Arguments]		${firstValue}		${secondValue}
 	${totalResults}=		Get Element Count		${FilteredResults}
-	: FOR	${singleResult}		IN RANGE		1	${totalResults}
+	: FOR	${singleResult}		IN RANGE		1	${totalResults}+1
 	\	${singleResultNum}=		Convert To String		${singleResult}	
 	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		NUM		${singleResultNum}
 	\	Element Should Be Visible		 ${SingleFilteredResult}
