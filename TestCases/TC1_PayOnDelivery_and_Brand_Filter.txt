@@ -8,7 +8,7 @@ Suite Setup		Open Amazon
 Suite Teardown	Close Browser
 
 *** Test Cases ***
-Select Pay on Delivery Filter and Check According to Selected Filter
+Select Pay on Delivery Filter From Mobile Menu  
 	Wait Until Element is visible		${MobilesButton}
 	Click Element		${MobilesButton}
 	Wait Until Element is visible		${PayOnDeliveryCheckbox}
@@ -16,10 +16,12 @@ Select Pay on Delivery Filter and Check According to Selected Filter
 	Click Element		${PayOnDeliveryCheckbox}
 	Element Should Contain		${ToolbarSection}		${valueCheckbox}
 	Wait Until Element is visible		${FilteredResults}
+
+Check All Results According to Pay on Delivery Filter	
 	: FOR	${pageNumber}		IN RANGE		1000	
 	\	${statusResults}=		Element Should Be Visible		${FilteredResults}
 	\	Wait Until Element is visible		${NextButton}		timeout=10s	
-	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
+	\	${status}=		Run Keyword And Return Status		Wait Until Element is visible		${NextButtonDisabled}		timeout=15s
 	\	Run Keyword If		${status}==False		Click Element		${NextButton}
 	\	...			ELSE		Exit For Loop
 	\	Wait Until Element is visible		${FilteredResults}
@@ -30,7 +32,7 @@ Select Pay on Delivery Filter and Check According to Selected Filter
 	Click Element		${PayOnDeliverySelectedCheckbox}
 	Wait Until Element is Not visible		${ToolbarSection}
 	
-Select Brands Filter and Check According to Selected Filter
+Select All Filters From Brands Filter Section and Check All Results According to Selected Filter
 	${statusCheckbox}=		Run Keyword And Return Status		Element Should Be Visible		${PayOnDeliverySelectedCheckbox}
 	Run Keyword If		${statusCheckbox}==True			Click Element		${PayOnDeliverySelectedCheckbox}	
 	Wait Until Element is visible		${MobilesButton}

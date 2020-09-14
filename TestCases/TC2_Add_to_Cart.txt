@@ -8,7 +8,7 @@ Suite Setup		Open Amazon
 Suite Teardown	Close Browser
 
 *** Test Cases ***
-Add Item Into Cart 
+Select Any Ite And Add Item Into Cart 
 	Wait Until Element is visible		${MobilesButton}
 	Click Element		${MobilesButton}
 	${BrandSectionCheckbox}=	Replace String		${BrandSectionCheckbox}		VALUE		${enterSearchProductName}
