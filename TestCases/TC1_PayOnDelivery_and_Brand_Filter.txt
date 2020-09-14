@@ -5,7 +5,7 @@ Library		Collections
 Resource	../Common/Common_Variables.txt
 Resource	../Resources/Keywords.txt	
 Suite Setup		Open Amazon
-#Suite Teardown	Close Browser
+Suite Teardown	Close Browser
 
 *** Test Cases ***
 Select Pay on Delivery Filter and Check According to Selected Filter
@@ -17,7 +17,7 @@ Select Pay on Delivery Filter and Check According to Selected Filter
 	Element Should Contain		${ToolbarSection}		${valueCheckbox}
 	Wait Until Element is visible		${FilteredResults}
 	: FOR	${pageNumber}		IN RANGE		1000	
-	\	Check Filtered Result Availability
+	\	${statusResults}=		Element Should Be Visible		${FilteredResults}
 	\	Wait Until Element is visible		${NextButton}		timeout=10s	
 	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
 	\	Run Keyword If		${status}==False		Click Element		${NextButton}
@@ -60,9 +60,6 @@ Select Brands Filter and Check According to Selected Filter
 	\	Click Element		${BrandSectionSelectedCheckbox}	
 	\	${BrandSectionSelectedCheckbox}=	Replace String		${BrandSectionSelectedCheckbox}		${keys[${num}]}		VALUE		
 	
-*** Keywords ***
-Check Filtered Result Availability
-	${status}=		Element Should Be Visible		${FilteredResults}
 	
 
 	
