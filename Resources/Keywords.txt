@@ -7,7 +7,7 @@ Open Amazon
 Check Filters For All Pages 
 	[Arguments]		${firstValue}		${secondValue}	
 	: FOR	${pageNumber}		IN RANGE		100	
-	\	Check Filters in Single Results		${firstValue}		${secondValue}
+	\	Check Filters In Single Page		${firstValue}		${secondValue}
 	\	Wait Until Element is visible		${NextButton}		timeout=10s
 	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
 	\	Run Keyword If		${status}==False		Click Element		${NextButton}
@@ -16,7 +16,7 @@ Check Filters For All Pages
 	\	${pageNumber}=		Evaluate		${pageNumber}+1
 
 
-Check Filters in Single Results
+Check Filters In Single Page
 	[Arguments]		${firstValue}		${secondValue}
 	${totalResults}=		Get Element Count		${FilteredResults}
 	: FOR	${singleResult}		IN RANGE		1	${totalResults}+1
