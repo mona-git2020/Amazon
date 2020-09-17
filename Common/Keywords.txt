@@ -5,9 +5,9 @@ Open Amazon
 	Maximize Browser Window
 
 Check Filters For All Pages 
-	[Arguments]		${firstValue}		${secondValue}	
+	[Arguments]		${firstValue}		${secondValue1}		${secondValue2}			${secondValue3}
 	: FOR	${pageNumber}		IN RANGE		100	
-	\	Check Filters In Single Page		${firstValue}		${secondValue}
+	\	Check Filters In Single Page		${firstValue}		${secondValue1}		${secondValue2}			${secondValue3}			
 	\	Wait Until Element is visible		${NextButton}		timeout=10s
 	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
 	\	Run Keyword If		${status}==False		Click Element		${NextButton}
@@ -17,13 +17,56 @@ Check Filters For All Pages
 
 
 Check Filters In Single Page
-	[Arguments]		${firstValue}		${secondValue}
+	[Arguments]		${firstValue}		${secondValue1}		${secondValue2}		${secondValue3}	
 	${totalResults}=		Get Element Count		${FilteredResults}
 	: FOR	${singleResult}		IN RANGE		1	${totalResults}+1
 	\	${singleResultNum}=		Convert To String		${singleResult}	
 	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		NUM		${singleResultNum}
 	\	Element Should Be Visible		 ${SingleFilteredResult}
+	\	${status}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResult}		Related searches
+	\	Continue For Loop If		${status}==True
 	\	${statusResult}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResult}		${firstValue}	
-	\	Run Keyword If		${statusResult}==False		Element Should Contain		${SingleFilteredResult}		${secondValue}
+	\	${statusResult1}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResult}		${secondValue1}	
+	\	${statusResult2}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResult}		${secondValue2}		
+	\	Run Keyword If		${statusResult}==False and ${statusResult1}==False and ${statusResult2}==False		Element Should Contain		${SingleFilteredResult}		${secondValue3}			
 	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${singleResultNum}		NUM
 	\	${singleResult}=	Evaluate	${singleResult}+1
+
+Verify Sort By Price For All Pages
+	: FOR	${pageNumber}		IN RANGE		100	
+	\	Verufy Sort By Price For All Rows			
+	\	Wait Until Element is visible		${NextButton}		timeout=10s
+	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
+	\	Run Keyword If		${status}==False		Click Element		${NextButton}
+	\	...			ELSE		Exit For Loop
+	\	Wait Until Element is visible		${FilteredResults}
+	\	${pageNumber}=		Evaluate		${pageNumber}+1
+
+
+Verufy Sort By Price For All Rows	
+	${totalResults}=		Get Element Count		${FilteredResults}
+	: FOR	${row}		IN RANGE		1	${totalResults}+1
+	\	${rowNum}=		Convert To String		${row}	
+	\	${CurrentDisplayedPrice}=	Replace String		${DisplayedPrice}		NUM		${rowNum}
+	\	${statusPrice}=		Run Keyword And Return Status		Element Should Be Visible		 ${CurrentDisplayedPrice}
+	\	Continue For Loop If		${statusPrice}==False
+	\	${currentPrice}=		Get Text		${CurrentDisplayedPrice}
+	\	${currentPrice}=		Remove String		${currentPrice}			,
+	\	${DisplayedPrice}=	Replace String		${DisplayedPrice}		${rowNum}		NUM
+	\	${previousRow}=		Evaluate	${row}-1
+	\	${previousRowNum}=		Convert To String		${previousRow}		
+	\	Continue For Loop If		${previousRow}==-1
+	\	${PreviousDisplayedPrice}=	Replace String		${DisplayedPrice}		NUM		${previousRowNum}	
+	\	${statusPrice1}=		Run Keyword And Return Status		Element Should Be Visible		 ${PreviousDisplayedPrice}
+	\	Continue For Loop If		${statusPrice1}==False
+	\	${previousPrice}=		Get Text		${PreviousDisplayedPrice}
+	\	${previousPrice}=		Remove String		${previousPrice}		,
+	\	${status}=		Run Keyword And Return Status		Element Should Contain 		${SortByButton}		Low to High
+	\	Run Keyword If		${status}==True			Should Be True			${PreviousPrice}<=${currentPrice}
+	\	Run Keyword If		${status}==False		Should Be True			${PreviousPrice}>=${currentPrice}	
+	\	${DisplayedPrice}=	Replace String		${DisplayedPrice}		${rowNum}		NUM
+	\	Wait Until Element is visible		${FilteredResults}
+	\	${row}=		Evaluate	${row}+1
+
+
+	

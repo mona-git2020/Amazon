@@ -10,6 +10,7 @@ ${ToolbarSection}=			css=h1[class*="toolbar"] div.sg-col-inner
 ${FilteredResults}=			css=div[class*="s-main-slot"]>div>div[class='sg-col-inner']
 ${SingleFilteredResult}=	css=div[class*="s-main-slot"]>div[data-index="NUM"]>div[class='sg-col-inner']
 ${NextButton}=				css=.a-last
+${PreviousButton}=			css=ul.a-pagination>li:nth-child(1)
 ${NextButtonDisabled}=		css=li[class*="disabled a-last"]
 ${FirstItem}=			css=div[data-index="0"]
 ${FirstItemValue}=		css=div[data-index="0"] a[class*="text-normal"]
@@ -22,3 +23,11 @@ ${Suggestions}=			css=div#suggestions
 ${TotalSuggestions}=	css=div#suggestions>div	
 ${FirstSuggestion}=		css=div#suggestions>div[id*="0"]	
 ${SingleSuggestions}=	css=div#suggestions>div[id*="NUM"]	
+${SortByButton}=		css=span[class*="a-button-dropdown"]
+${SortFeatured}=		css=a[id*='sort-select_0']
+${SortLowToHigh}=		css=a[id*='sort-select_1']
+${SortHighToLow}=		css=a[id*='sort-select_2']
+${SelectedPageNumber}=		css=li.a-selected
+${FirstPage}=			css=ul.a-pagination>li:nth-child(2)
+
+${DisplayedPrice}=		css=div[class*="s-main-slot"]>div[data-index="NUM"] span[class*='a-price-whole']
