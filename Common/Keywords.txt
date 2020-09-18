@@ -68,5 +68,40 @@ Verufy Sort By Price For All Rows
 	\	Wait Until Element is visible		${FilteredResults}
 	\	${row}=		Evaluate	${row}+1
 
+Verify Department Filtered Results For All Pages
+	[Arguments]		${filterLabel}
+	: FOR	${pageNumber}		IN RANGE		100	
+	\	Verify Department Filtered Results From Single Page		${filterLabel}	
+	\	Wait Until Element is visible		${NextButton}		timeout=10s
+	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
+	\	Run Keyword If		${status}==False		Click Element		${NextButton}
+	\	...			ELSE		Exit For Loop
+	\	Wait Until Element is visible		${FilteredResults}
+	\	${pageNumber}=		Evaluate		${pageNumber}+1
 
+
+Verify Department Filtered Results From Single Page
+	[Arguments]		${filterLabel}
+	${filterLabel}=		Remove String		${filterLabel}		(		)	
+	${filterLabel}=		Split String		${filterLabel}		${SPACE}
+	${totalResults}=		Get Element Count		${DepartmentFilteredResults}
+	: FOR	${result}		IN RANGE		1	${totalResults}+1
+	\	${resultNum}=		Convert To String		${result}
+	\	${SingleDepartmentFilteredResults}=		Replace String		${SingleDepartmentFilteredResults}		NUM		${resultNum}
+	\	${ProductTitleLink}=		Replace String		${ProductTitleLink}		NUM		${resultNum}
+	\	${status}=		Run Keyword And Return Status		Element Should Contain			${SingleDepartmentFilteredResults}			${filterLabel[0]}
+	\	${status1}=		Run Keyword And Return Status		Element Should Contain			${SingleDepartmentFilteredResults}			${filterLabel[1]}
+	\	${status2}		${status3}		Run Keyword If		${status}==False and ${status1}==False			Verify Department Filtered Results After Clicking On Element		${ProductTitleLink}		${filterLabel}
+	\	Wait Until Element Is Visible			${DepartmentFilteredResults}	
+	\	Run Keyword If		${status2}==False and ${status3}==False			Element Should Be Visible		${SingleDepartmentFilteredResults}	
+	\	${SingleDepartmentFilteredResults}=		Replace String		${SingleDepartmentFilteredResults}		${resultNum}		NUM
+	\	${ProductTitleLink}=		Replace String		${ProductTitleLink}		${resultNum}		NUM
 	
+Verify Department Filtered Results After Clicking On Element		
+	[Arguments]		${ProductTitleLink}		${filterLabel}	
+	Click Element		${ProductTitleLink}	
+	Wait Until Element Is Visible			${NewPageProductDetails}		timeout=10s
+	${status2}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[0]}
+	${status3}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[1]}
+	Go Back
+	Return From Keyword			${status2}		${status3}

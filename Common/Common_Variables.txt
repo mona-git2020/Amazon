@@ -1,6 +1,7 @@
 *** Variables ***
 
 ${MobilesButton}=				css = a[href*="mobiles"]
+${TodaysDealsButton}=			css=a[href*="gb"]
 ${PayOnDeliveryCheckbox}=		css = div#leftNav ul:nth-child(10) li span[class*="checkbox"]
 ${PayOnDeliverySelectedCheckbox}=		css=li[id*="eligible"] span[class*="item"]
 ${BrandSection}=				css = #leftNav ul:nth-child(12) li
@@ -28,6 +29,20 @@ ${SortFeatured}=		css=a[id*='sort-select_0']
 ${SortLowToHigh}=		css=a[id*='sort-select_1']
 ${SortHighToLow}=		css=a[id*='sort-select_2']
 ${SelectedPageNumber}=		css=li.a-selected
-${FirstPage}=			css=ul.a-pagination>li:nth-child(2)
-
+${FirstPage}=			css=a[href*="pg_1"]
+${SecondPage}=			css=a[href*="pg_2"]
+${ThirdPage}=			css=a[href*="pg_3"]
+${FouthPage}=			css=a[href*="pg_4"]
+${DepartmentFilterSection}		css=#widgetFilters>div:nth-child(1)
 ${DisplayedPrice}=		css=div[class*="s-main-slot"]>div[data-index="NUM"] span[class*='a-price-whole']
+${TotalDepartmentFilters}=		css=div[class*="inline-container"]>span
+${DepartmentFilterLabel}=		css=div[class*="inline-container"]>span:nth-child(NUM) span[class*="label"]
+${DepartmentFilterCheckbox}=		css=div[class*="inline-container"]>span:nth-child(NUM) input[type="checkbox"][checked=""]
+${AllDealsShowingSection}=			css=div[id*='all_summary']
+${DepartmentFilteredResults}=		css=div[class*='none padCenter']>div>div
+${SingleDepartmentFilteredResults}=		css=div[class*='none padCenter']>div>div[id*='dealView']:nth-child(NUM)
+${AllDealsShowingValue}=			css=div[id*='all_summary']>div>span:nth-child(5)
+${SeeMoreDeparmentExpander}=		css=span[class*='expander']
+${ProductTitleLink}=				css=div[class*='none padCenter']>div>div[id*='dealView']:nth-child(NUM) a#dealTitle
+${NewPageProductDetails}=			css=div#centerCol
+
