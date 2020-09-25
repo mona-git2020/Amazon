@@ -12,13 +12,16 @@ Search The Product Name
 	Wait Until Element is visible		${MobilesButton}
 	Wait Until Element is visible		${SearchProduct}
 	Click Element			${SearchProduct}
-	Input Text			${SearchProduct}		${enterSearchProductName}
+	Input Text			${SearchProduct}		${enterSearchProductName[0]}
 	Wait Until Element is visible		${Suggestions}		timeout=15s
 
 
 Select From Suggestions And Verify All The Filtered Results According to Selected Suggestion 
 	${suggestionValue}=	Get Text	${FirstSuggestion}
 	Click Element		${FirstSuggestion}
+	${productName}=		Set Variable		${enterSearchProductName[0]}
+	${productName1}=		Convert To Lowercase		${productName}
+	${suggestionValueLower}=		Convert To Lowercase		${suggestionValue}
 	Wait Until Element is visible		${FilteredResults}		timeout=15s
-	Check Filters For All Pages		${suggestionValue}		${enterSearchProductName}	
+	Check Filters For All Pages		${suggestionValue}		${productName}		${productName1}		${suggestionValueLower}
 
