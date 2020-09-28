@@ -12,18 +12,17 @@ Search The Product Name
 	Wait Until Element is visible		${MobilesButton}
 	Wait Until Element is visible		${SearchProduct}
 	Click Element			${SearchProduct}
-	Input Text			${SearchProduct}		OnePlus
+	Input Text			${SearchProduct}		${enterSearchProductName[2]}
 	Press Keys			${SearchProduct}		ENTER
 	Wait Until Element is visible		${FilteredResults}		timeout=15s
 	
 	
 Verify Filtered Results According To Search Product
-	${searchProductName}=		Set Variable	${enterSearchProductName[1]}
-	${searchValue}=		Split String		${enterSearchProductName[1]}
+	${searchProductName}=		Set Variable	${enterSearchProductName[2]}
+	${searchValue}=		Split String		${enterSearchProductName[2]}
 	${productName1}=			Set Variable	${searchValue[0]}
-	${productName2}=			Set Variable	${searchValue[1]}	
-	${productName3}=			Set Variable	Tablet
-	Check Filters For All Pages			${searchProductName}		${productName1}		${productName2}			${productName3}
+	${productName2}=		Convert To Lowercase		${productName1}
+	Check Filters For All Pages			${searchProductName}		${searchValue}		${productName2}			${productName1}
 
 Verify Previous And Next Button	
 	Wait Until Element is visible		${NextButton}		timeout=15s

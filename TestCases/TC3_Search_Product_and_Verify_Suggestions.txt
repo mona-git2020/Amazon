@@ -12,15 +12,20 @@ Search The Product Name
 	Wait Until Element is visible		${MobilesButton}
 	Wait Until Element is visible		${SearchProduct}
 	Click Element			${SearchProduct}
-	Input Text			${SearchProduct}		${enterSearchProductName[1]}
+	Input Text			${SearchProduct}		${enterSearchProductName[0]}
 	Wait Until Element is visible		${Suggestions}			timeout=15s
 	
 Verify All Suggestions According to Search Product
 	${totalSuggestionsNum}=		Get Element Count		${TotalSuggestions}
 	: For		${singleSuggestion}		IN RANGE		${totalSuggestionsNum}
 	\	${number}=		Convert To String		${singleSuggestion}
-	\	${SingleSuggestions}=		Replace String		${SingleSuggestions}		NUM		${number}
-	\	${lowerCaseValue}=		Convert To Lower Case		${enterSearchProductName[1]}
-	\	${statusProductName}=		Run Keyword And Return Status		Element Should Contain		${SingleSuggestions}		${enterSearchProductName[1]}
-	\	Run Keyword If		${statusProductName}==False			Element Should Contain		${SingleSuggestions}		${lowerCaseValue}
+	\	${SingleSuggestionsNew}=		Replace String		${SingleSuggestions}		NUM		${number}
 	\	${SingleSuggestions}=		Replace String		${SingleSuggestions}		${number}		NUM
+	\	${lowerCaseValue}=		Convert To Lower Case		${enterSearchProductName[0]}
+	\	${suggestionsValue}=		Get Text		${SingleSuggestionsNew}
+	\	${statusProduct}=		Run Keyword And Return Status		Element Should Contain		${SingleSuggestionsNew}		${extraSuggestions[0]}
+	\	Continue For Loop IF		${statusProduct}==True
+	\	${statusProductName}=		Run Keyword And Return Status		Element Should Contain		${SingleSuggestionsNew}		${enterSearchProductName[0]}
+	\	Run Keyword If		${statusProductName}==False			Element Should Contain		${SingleSuggestionsNew}		${lowerCaseValue}
+	\	${SingleSuggestions}=		Replace String		${SingleSuggestions}		${number}		NUM
+	

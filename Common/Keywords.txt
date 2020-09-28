@@ -12,7 +12,7 @@ Check Filters For All Pages
 	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
 	\	Run Keyword If		${status}==False		Click Element		${NextButton}
 	\	...			ELSE		Exit For Loop
-	\	Wait Until Element is visible		${FilteredResults}
+	\	Wait Until Element is visible		${FilteredResults}		timeout=10s
 	\	${pageNumber}=		Evaluate		${pageNumber}+1
 
 
@@ -21,14 +21,31 @@ Check Filters In Single Page
 	${totalResults}=		Get Element Count		${FilteredResults}
 	: FOR	${singleResult}		IN RANGE		1	${totalResults}+1
 	\	${singleResultNum}=		Convert To String		${singleResult}	
-	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		NUM		${singleResultNum}
-	\	Element Should Be Visible		 ${SingleFilteredResult}
-	\	${status}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResult}		Related searches
+	\	${SingleFilteredResultNew}=			Replace String		${SingleFilteredResult}		NUM		${singleResultNum}
+	\	Element Should Be Visible		 ${SingleFilteredResultNew}		timeout=10s
+	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${singleResultNum}		NUM
+	\	${status}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Related searches
 	\	Continue For Loop If		${status}==True
-	\	${statusResult}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResult}		${firstValue}	
-	\	${statusResult1}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResult}		${secondValue1}	
-	\	${statusResult2}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResult}		${secondValue2}		
-	\	Run Keyword If		${statusResult}==False and ${statusResult1}==False and ${statusResult2}==False		Element Should Contain		${SingleFilteredResult}		${secondValue3}			
+	\	${status1}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Sponsored
+	\	Continue For Loop If		${status1}==True
+	\	${status2}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Launching soon
+	\	Continue For Loop If		${status2}==True
+	\	${status3}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Prime Video
+	\	Continue For Loop If		${status3}==True
+	\	${status4}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Shop by 
+	\	Continue For Loop If		${status4}==True
+#	\	Log		${secondValue2}
+	\	${value4}=		Convert To Uppercase		${secondValue2}
+	\	${charList}=		Split String To Characters		${secondValue2}
+	\	${firstChar}=		Convert To Uppercase		${charList[0]}
+#	\	${secondValue4}=		Get Substring		${secondValue3}		1
+	\	${value5}=		Replace String		${secondValue2}		${charList[0]}		${firstChar}		count=1
+	\	${statusResult}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${firstValue}	
+	\	${statusResult1}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${secondValue1}	
+	\	${statusResult2}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${secondValue2}	
+	\	${statusResult3}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${secondValue3}			
+	\	${statusResult4}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${value4}			
+	\	Run Keyword If		${statusResult}==False and ${statusResult1}==False and ${statusResult2}==False and ${statusResult3}==False and ${statusResult4}==False		Element Should Contain		${SingleFilteredResultNew}		${value5}			
 	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${singleResultNum}		NUM
 	\	${singleResult}=	Evaluate	${singleResult}+1
 
@@ -39,7 +56,7 @@ Verify Sort By Price For All Pages
 	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
 	\	Run Keyword If		${status}==False		Click Element		${NextButton}
 	\	...			ELSE		Exit For Loop
-	\	Wait Until Element is visible		${FilteredResults}
+	\	Wait Until Element is visible		${FilteredResults}		timeout=10s
 	\	${pageNumber}=		Evaluate		${pageNumber}+1
 
 
@@ -65,7 +82,7 @@ Verufy Sort By Price For All Rows
 	\	Run Keyword If		${status}==True			Should Be True			${PreviousPrice}<=${currentPrice}
 	\	Run Keyword If		${status}==False		Should Be True			${PreviousPrice}>=${currentPrice}	
 	\	${DisplayedPrice}=	Replace String		${DisplayedPrice}		${rowNum}		NUM
-	\	Wait Until Element is visible		${FilteredResults}
+	\	Wait Until Element is visible		${FilteredResults}		timeout=10s
 	\	${row}=		Evaluate	${row}+1
 
 Verify Department Filtered Results For All Pages
@@ -76,7 +93,7 @@ Verify Department Filtered Results For All Pages
 	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
 	\	Run Keyword If		${status}==False		Click Element		${NextButton}
 	\	...			ELSE		Exit For Loop
-	\	Wait Until Element is visible		${FilteredResults}
+	\	Wait Until Element is visible		${FilteredResults}		timeout=10s
 	\	${pageNumber}=		Evaluate		${pageNumber}+1
 
 
@@ -92,7 +109,7 @@ Verify Department Filtered Results From Single Page
 	\	${status}=		Run Keyword And Return Status		Element Should Contain			${SingleDepartmentFilteredResults}			${filterLabel[0]}
 	\	${status1}=		Run Keyword And Return Status		Element Should Contain			${SingleDepartmentFilteredResults}			${filterLabel[1]}
 	\	${status2}		${status3}		Run Keyword If		${status}==False and ${status1}==False			Verify Department Filtered Results After Clicking On Element		${ProductTitleLink}		${filterLabel}
-	\	Wait Until Element Is Visible			${DepartmentFilteredResults}	
+	\	Wait Until Element Is Visible			${DepartmentFilteredResults}		timeout=10s	
 	\	Run Keyword If		${status2}==False and ${status3}==False			Element Should Be Visible		${SingleDepartmentFilteredResults}	
 	\	${SingleDepartmentFilteredResults}=		Replace String		${SingleDepartmentFilteredResults}		${resultNum}		NUM
 	\	${ProductTitleLink}=		Replace String		${ProductTitleLink}		${resultNum}		NUM
@@ -100,7 +117,7 @@ Verify Department Filtered Results From Single Page
 Verify Department Filtered Results After Clicking On Element		
 	[Arguments]		${ProductTitleLink}		${filterLabel}	
 	Click Element		${ProductTitleLink}	
-	Wait Until Element Is Visible			${NewPageProductDetails}		timeout=10s
+	Wait Until Element Is Visible			${NewPageProductDetails}		timeout=20s
 	${status2}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[0]}
 	${status3}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[1]}
 	Go Back

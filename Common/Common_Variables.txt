@@ -22,7 +22,7 @@ ${SubtotalActiveCart}=		css=#sc-subtotal-label-activecart
 ${SearchProduct}=		css=#twotabsearchtextbox
 ${Suggestions}=			css=div#suggestions		
 ${TotalSuggestions}=	css=div#suggestions>div	
-${FirstSuggestion}=		css=div#suggestions>div[id*="0"]	
+${FirstSuggestion}=		css=div#suggestions>div[id*="3"]	
 ${SingleSuggestions}=	css=div#suggestions>div[id*="NUM"]	
 ${SortByButton}=		css=span[class*="a-button-dropdown"]
 ${SortFeatured}=		css=a[id*='sort-select_0']
