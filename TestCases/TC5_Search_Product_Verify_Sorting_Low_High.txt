@@ -24,23 +24,23 @@ Verify Filtered Results According To Search Product
 	${productName3}=			Set Variable	Tablet
 	Check Filters For All Pages			${searchProductName}		${productName1}		${productName2}			${productName3}
 
-Select Low To High Price From Sort By And Verify
-	Wait Until Element is visible		${SortByButton}			timeout=10s	
-	Click Element		${SortByButton}
-	Wait Until Element is visible		${SortLowToHigh}
-	${sortValue}=		Get Text		${SortLowToHigh}
-	Click Element		${SortLowToHigh}
-	Wait Until Element is visible		${FilteredResults}		timeout=15s
-	Element Should Contain		${SortByButton}		${sortValue}
-	Verify Sort By Price For All Pages		
-
 Select High To Low Price From Sort By And Verify
 	Wait Until Element is visible		${SortByButton}			timeout=10s	
 	Click Element		${SortByButton}
-	Wait Until Element is visible		${SortHighToLow}		timeout=15s	
+	Wait Until Element is visible		${SortHighToLow}		timeout=20s	
 	${sortValue}=		Get Text		${SortHighToLow}
 	Click Element		${SortHighToLow}
 	Wait Until Element is visible		${FilteredResults}		timeout=15s
 	Element Should Contain		${SortByButton}		${sortValue}
 	Verify Sort By Price For All Pages			
 	
+Select Low To High Price From Sort By And Verify
+	Wait Until Element is visible		${SortByButton}			timeout=10s	
+	Click Element		${SortByButton}
+	Wait Until Element is visible		${SortLowToHigh}		timeout=20s	
+	${sortValue}=		Get Text		${SortLowToHigh}
+	Click Element		${SortLowToHigh}
+	Wait Until Element is visible		${FilteredResults}		timeout=15s
+	Element Should Contain		${SortByButton}		${sortValue}
+	Verify Sort By Price For All Pages		
+

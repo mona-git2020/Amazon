@@ -64,24 +64,50 @@ Verufy Sort By Price For All Rows
 	${totalResults}=		Get Element Count		${FilteredResults}
 	: FOR	${row}		IN RANGE		1	${totalResults}+1
 	\	${rowNum}=		Convert To String		${row}	
-	\	${CurrentDisplayedPrice}=	Replace String		${DisplayedPrice}		NUM		${rowNum}
+	\	${CurrentDisplayedPrice}=		Replace String		${DisplayedPrice}		NUM		${rowNum}
+	\	${NewMoreBuyingChoicePrice}=		Replace String		${MoreBuyingChoicePrice}		NUM		${rowNum}
+	\	${NewSingleFilteredResult}=		Replace String		${SingleFilteredResult}		NUM		${rowNum}
+	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${rowNum}		NUM
+	\	${MoreBuyingChoicePrice}=	Replace String		${MoreBuyingChoicePrice}		${rowNum}		NUM
+	\	${DisplayedPrice}=		Replace String		${DisplayedPrice}		${rowNum}		NUM
 	\	${statusPrice}=		Run Keyword And Return Status		Element Should Be Visible		 ${CurrentDisplayedPrice}
 	\	Continue For Loop If		${statusPrice}==False
+	\	${statusSponsored}=		Run Keyword And Return Status		Element Should Contain 		${NewSingleFilteredResult}		Sponsored
+	\	Continue For Loop If		${statusSponsored}==True
 	\	${currentPrice}=		Get Text		${CurrentDisplayedPrice}
 	\	${currentPrice}=		Remove String		${currentPrice}			,
-	\	${DisplayedPrice}=	Replace String		${DisplayedPrice}		${rowNum}		NUM
+	\	${statusMoreChoice}=	Run Keyword And Return Status		Element Should Be Visible		 ${NewMoreBuyingChoicePrice}
+	\	${currentPrice2}=		Run Keyword If		${statusMoreChoice}==True		Get Text		${NewMoreBuyingChoicePrice}
+	\	${currentPrice2}=		Run Keyword If		${statusMoreChoice}==True		Get Substring		${currentPrice2}			1		
+	\	${currentPrice2}=		Run Keyword If		${statusMoreChoice}==True		Remove String		${currentPrice2}			,		
+#	\	Run Keyword If		${statusMoreChoice}==True		Set Variable		
+#	\	${DisplayedPrice}=		Replace String		${DisplayedPrice}		${rowNum}		NUM
+#	\	${NewSingleFilteredResult}=		Replace String		${SingleFilteredResult}		NUM		${rowNum}
 	\	${previousRow}=		Evaluate	${row}-1
 	\	${previousRowNum}=		Convert To String		${previousRow}		
 	\	Continue For Loop If		${previousRow}==-1
 	\	${PreviousDisplayedPrice}=	Replace String		${DisplayedPrice}		NUM		${previousRowNum}	
+	\	${NewSingleFilteredResult}=		Replace String		${SingleFilteredResult}		NUM		${previousRowNum}
+	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${rowNum}		NUM
+	\	${MoreBuyingChoicePrice}=	Replace String		${MoreBuyingChoicePrice}		${rowNum}		NUM
+	\	${DisplayedPrice}=		Replace String		${DisplayedPrice}		${rowNum}		NUM
+	\	${statusSponsored}=		Run Keyword And Return Status		Element Should Contain 		${NewSingleFilteredResult}		Sponsored
+	\	Continue For Loop If		${statusSponsored}==True
 	\	${statusPrice1}=		Run Keyword And Return Status		Element Should Be Visible		 ${PreviousDisplayedPrice}
 	\	Continue For Loop If		${statusPrice1}==False
 	\	${previousPrice}=		Get Text		${PreviousDisplayedPrice}
 	\	${previousPrice}=		Remove String		${previousPrice}		,
+	\	${statusMoreChoice2}=	Run Keyword And Return Status		Element Should Be Visible		 ${NewMoreBuyingChoicePrice}
+	\	${previousPrice2}=		Run Keyword If		${statusMoreChoice}==True		Get Text		${NewMoreBuyingChoicePrice}
+	\	${previousPrice2}=		Run Keyword If		${statusMoreChoice}==True		Get Substring		${previousPrice2}			1		
+	\	${previousPrice2}=		Run Keyword If		${statusMoreChoice}==True		Remove String		${previousPrice2}			,		
 	\	${status}=		Run Keyword And Return Status		Element Should Contain 		${SortByButton}		Low to High
-	\	Run Keyword If		${status}==True			Should Be True			${PreviousPrice}<=${currentPrice}
-	\	Run Keyword If		${status}==False		Should Be True			${PreviousPrice}>=${currentPrice}	
-	\	${DisplayedPrice}=	Replace String		${DisplayedPrice}		${rowNum}		NUM
+	\	Run Keyword If		${status}==True and ${statusMoreChoice}==True and ${statusMoreChoice2}==True			Should Be True			${PreviousPrice2}<=${currentPrice2}
+	\	...			ELSE IF			${status}==True and ${statusMoreChoice}==False and ${statusMoreChoice2}==True			Should Be True			${PreviousPrice2}<=${currentPrice}
+	\	...			ELSE IF			${status}==True and ${statusMoreChoice}==False and ${statusMoreChoice2}==False			Should Be True			${PreviousPrice}<=${currentPrice}
+	\	Run Keyword If		${status}==False and ${statusMoreChoice}==True and ${statusMoreChoice2}==True		Should Be True			${PreviousPrice2}>=${currentPrice2}	
+	\	...			ELSE IF			${status}==False and ${statusMoreChoice}==False and ${statusMoreChoice2}==True			Should Be True			${PreviousPrice2}>=${currentPrice}
+	\	...			ELSE IF			${status}==False and ${statusMoreChoice}==False and ${statusMoreChoice2}==False			Should Be True			${PreviousPrice}>=${currentPrice}
 	\	Wait Until Element is visible		${FilteredResults}		timeout=10s
 	\	${row}=		Evaluate	${row}+1
 
@@ -122,3 +148,23 @@ Verify Department Filtered Results After Clicking On Element
 	${status3}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[1]}
 	Go Back
 	Return From Keyword			${status2}		${status3}
+	
+Check Price Filter From Gift Cards For All Results
+	[Arguments]		${price}
+	${totalGiftResults}=		Get Element Count			${GiftFilteredResults}
+	: FOR		${filter}		IN RANGE		1		${totalGiftResults}+1
+	\	${filterNum}=		Convert To String		${filter}
+	\	${GiftDisplayedPrice}=			Replace String		${GiftDisplayedPrice}		NUM			${filterNum}
+	\	${displayedPrice}=		Get Text		${GiftDisplayedPrice}
+	\	${displayedPrice}=		Get Substring		${displayedPrice}		1	
+	\	${statusPrice1}=		Run Keyword And Return Status		Element Should Contain		${FilterPriceDropdownButton}		Up to	
+	\	${statusPrice2}=		Run Keyword And Return Status		Element Should Contain		${FilterPriceDropdownButton}		Over	
+	\	Run Keyword If		${statusPrice1}==True		Should Be True		${displayedPrice}<=${price}
+	\	Run Keyword If		${statusPrice2}==True		Should Be True		${displayedPrice}>=${price}
+
+	
+	
+	
+	
+	
+	

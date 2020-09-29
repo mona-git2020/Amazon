@@ -2,6 +2,7 @@
 
 ${MobilesButton}=				css = a[href*="mobiles"]
 ${TodaysDealsButton}=			css=a[href*="gb"]
+${GiftIdeaButton}=			css=a[href*="gift"]
 ${PayOnDeliveryCheckbox}=		css = div#leftNav ul:nth-child(10) li span[class*="checkbox"]
 ${PayOnDeliverySelectedCheckbox}=		css=li[id*="eligible"] span[class*="item"]
 ${BrandSection}=				css = #leftNav ul:nth-child(12) li
@@ -25,9 +26,9 @@ ${TotalSuggestions}=	css=div#suggestions>div
 ${FirstSuggestion}=		css=div#suggestions>div[id*="3"]	
 ${SingleSuggestions}=	css=div#suggestions>div[id*="NUM"]	
 ${SortByButton}=		css=span[class*="a-button-dropdown"]
-${SortFeatured}=		css=a[id*='sort-select_0']
-${SortLowToHigh}=		css=a[id*='sort-select_1']
-${SortHighToLow}=		css=a[id*='sort-select_2']
+${SortFeatured}=		css=ul li[class*="dropdown"]:nth-child(1)
+${SortLowToHigh}=		Link=Price: Low to High
+${SortHighToLow}=		Link=Price: High to Low
 ${SelectedPageNumber}=		css=li.a-selected
 ${FirstPage}=			css=a[href*="pg_1"]
 ${SecondPage}=			css=a[href*="pg_2"]
@@ -35,6 +36,7 @@ ${ThirdPage}=			css=a[href*="pg_3"]
 ${FouthPage}=			css=a[href*="pg_4"]
 ${DepartmentFilterSection}		css=#widgetFilters>div:nth-child(1)
 ${DisplayedPrice}=		css=div[class*="s-main-slot"]>div[data-index="NUM"] span[class*='a-price-whole']
+${MoreBuyingChoicePrice}=		css=div[class*="s-main-slot"]>div[data-index="NUM"] div[class*="secondary"]>span[class*="price"]
 ${TotalDepartmentFilters}=		css=div[class*="inline-container"]>span
 ${DepartmentFilterLabel}=		css=div[class*="inline-container"]>span:nth-child(NUM) span[class*="label"]
 ${DepartmentFilterCheckbox}=		css=div[class*="inline-container"]>span:nth-child(NUM) input[type="checkbox"]
@@ -46,3 +48,17 @@ ${SeeMoreDeparmentExpander}=		css=span[class*='expander']
 ${ProductTitleLink}=				css=div[class*='none padCenter']>div>div[id*='dealView']:nth-child(NUM) a#dealTitle
 ${NewPageProductDetails}=			css=div#centerCol
 
+
+${HoverLinkFromButton}=			css=div[id*="subnav"]>a[class*="hasArrow"]		
+${SingleHoverLink}=			css=div[id*="subnav"]>a[class*="hasArrow"]:nth-child(NUM)
+${HoverSubMenu}=		css=div[class="nav-template nav-flyout-content"]>div[class="mega-menu"]
+${HoverSubSubMenu}=		css=div[class="mm-column"]
+${ActiveLink}=		css=a[class*="nav-active"]		
+
+${GiftCardsButtonImage}=		css=a[href*="Gift-Cards"]>div
+${GiftFilteredResults}=			css=div[id="gcx-gf-section-0"] div[class*="sc-kpOJdX"]
+${GiftDisplayedPrice}=			css=div[id="gcx-gf-section-0"] div[class*="sc-kpOJdX"]:nth-child(NUM) span[data-test="price"]
+${FilterPriceDropdownButton}=		css=div[data-test="price-filter"]
+${TortalFilteredPriceFromDropdoown}=		css=div[data-test*="dropdown"]>div[data-test*="option"]
+${SelectPriceFromDropdoown}=		css=div[data-test*="dropdown"]>div:nth-child(NUM) 
+${FirstFilterPrice}=		css=div[data-test*="dropdown"]>div:nth-child(1)
