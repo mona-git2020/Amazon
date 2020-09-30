@@ -114,8 +114,8 @@ Verufy Sort By Price For All Rows
 Verify Department Filtered Results For All Pages
 	[Arguments]		${filterLabel}
 	: FOR	${pageNumber}		IN RANGE		100	
-	\	Verify Department Filtered Results From Single Page		${filterLabel}	
-	\	Wait Until Element is visible		${NextButton}		timeout=10s
+	\	Verify Department Filtered Results From Single Page		${filterLabel}
+	\	Wait Until Element is visible		${NextButton}		timeout=20s
 	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
 	\	Run Keyword If		${status}==False		Click Element		${NextButton}
 	\	...			ELSE		Exit For Loop
@@ -134,20 +134,20 @@ Verify Department Filtered Results From Single Page
 	\	${ProductTitleLink}=		Replace String		${ProductTitleLink}		NUM		${resultNum}
 	\	${status}=		Run Keyword And Return Status		Element Should Contain			${SingleDepartmentFilteredResults}			${filterLabel[0]}
 	\	${status1}=		Run Keyword And Return Status		Element Should Contain			${SingleDepartmentFilteredResults}			${filterLabel[1]}
-	\	${status2}		${status3}		Run Keyword If		${status}==False and ${status1}==False			Verify Department Filtered Results After Clicking On Element		${ProductTitleLink}		${filterLabel}
+	\	${status2}		${status3}		Run Keyword If		${status}==False and ${status1}==False			Element Should Be Visible		${SingleDepartmentFilteredResults}		#Verify Department Filtered Results After Clicking On Element		${ProductTitleLink}		${filterLabel}
 	\	Wait Until Element Is Visible			${DepartmentFilteredResults}		timeout=10s	
 	\	Run Keyword If		${status2}==False and ${status3}==False			Element Should Be Visible		${SingleDepartmentFilteredResults}	
 	\	${SingleDepartmentFilteredResults}=		Replace String		${SingleDepartmentFilteredResults}		${resultNum}		NUM
 	\	${ProductTitleLink}=		Replace String		${ProductTitleLink}		${resultNum}		NUM
 	
-Verify Department Filtered Results After Clicking On Element		
-	[Arguments]		${ProductTitleLink}		${filterLabel}	
-	Click Element		${ProductTitleLink}	
-	Wait Until Element Is Visible			${NewPageProductDetails}		timeout=20s
-	${status2}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[0]}
-	${status3}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[1]}
-	Go Back
-	Return From Keyword			${status2}		${status3}
+#Verify Department Filtered Results After Clicking On Element		
+#	[Arguments]		${ProductTitleLink}		${filterLabel}	
+#	Click Element		${ProductTitleLink}	
+#	Wait Until Element Is Visible			${NewPageProductDetails}		timeout=20s
+#	${status2}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[0]}
+#	${status3}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[1]}
+#	Go Back
+#	Return From Keyword			${status2}		${status3}
 	
 Check Price Filter From Gift Cards For All Results
 	[Arguments]		${price}

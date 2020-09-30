@@ -15,6 +15,7 @@ Hover On Links From Mobiles
 
 
 
+
 Verify Hover Suggestions
 	${totalLinks}=		Get Element Count		${HoverLinkFromButton}
 	: FOR		${link}		IN RANGE		2	${totalLinks}+2
@@ -29,14 +30,16 @@ Verify Hover Suggestions
 	\	${hoverNum}=		Convert To String		${hoverNum}
 	\	${HoverSubMenu}=		Replace String		${HoverSubMenu}		NUM		${hoverNum}
 	\	Wait Until Element is visible		${ActiveLink}		timeout=25s
-	\	Sleep		10s
-	\	Run Keyword And Return Status		Wait Until Element is visible		${HoverSubMenu}		timeout=25s
+	\	Sleep		60s
+	\	${status}=		Run Keyword And Return Status		Wait Until Element Is Visible		${HoverSubMenu}		timeout=2 min
 	\	${hoverValue}=		Get Text	${HoverSubMenu}
 	\	${status1}=		Run Keyword And Return Status		Element Should Contain		${HoverSubMenu}		${hoverLinkValue[0]}
 	\	${status2}=		Run Keyword And Return Status		Element Should Contain		${HoverSubMenu}		${hoverLinkValue[1]}
 	\	${status3}=		Run Keyword And Return Status		Element Should Contain		${HoverSubMenu}		${hoverLinkValue[2]}
 	\	Run Keyword If		${status1}==False and ${status2}==False		Element Should Contain		${HoverSubMenu}		${hoverLinkValue[3]}
-	\	Mouse Out		${SingleHoverLink}
-	\	Sleep		10s
+	\	Mouse Over		${MobilesButton}
+	\	Wait Until Element Is Not Visible		${HoverSubMenu}		timeout=25s
+	\	Mouse Out		${MobilesButton}
+	\	Sleep		60s
 	\	${SingleHoverLink}=		Replace String		${SingleHoverLink}		${linkNum}		NUM	
 	\	${HoverSubMenu}=		Replace String		${HoverSubMenu}		${hoverNum}		NUM		

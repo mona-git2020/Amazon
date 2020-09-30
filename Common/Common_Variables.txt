@@ -11,7 +11,7 @@ ${BrandSectionSelectedCheckbox}=		css=#brandsRefinements li[id*="VALUE"] span[cl
 ${ToolbarSection}=			css=h1[class*="toolbar"] div.sg-col-inner
 ${FilteredResults}=			css=div[class*="s-main-slot"]>div>div[class='sg-col-inner']
 ${SingleFilteredResult}=	css=div[class*="s-main-slot"]>div[data-index="NUM"]>div[class='sg-col-inner']
-${NextButton}=				css=.a-last
+${NextButton}=				css=li[class="a-last"]
 ${PreviousButton}=			css=ul.a-pagination>li:nth-child(1)
 ${NextButtonDisabled}=		css=li[class*="disabled a-last"]
 ${FirstItem}=			css=div[data-index="0"]
