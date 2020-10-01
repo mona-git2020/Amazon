@@ -34,11 +34,9 @@ Check Filters In Single Page
 	\	Continue For Loop If		${status3}==True
 	\	${status4}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Shop by 
 	\	Continue For Loop If		${status4}==True
-#	\	Log		${secondValue2}
 	\	${value4}=		Convert To Uppercase		${secondValue2}
 	\	${charList}=		Split String To Characters		${secondValue2}
 	\	${firstChar}=		Convert To Uppercase		${charList[0]}
-#	\	${secondValue4}=		Get Substring		${secondValue3}		1
 	\	${value5}=		Replace String		${secondValue2}		${charList[0]}		${firstChar}		count=1
 	\	${statusResult}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${firstValue}	
 	\	${statusResult1}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${secondValue1}	
@@ -80,9 +78,6 @@ Verufy Sort By Price For All Rows
 	\	${currentPrice2}=		Run Keyword If		${statusMoreChoice}==True		Get Text		${NewMoreBuyingChoicePrice}
 	\	${currentPrice2}=		Run Keyword If		${statusMoreChoice}==True		Get Substring		${currentPrice2}			1		
 	\	${currentPrice2}=		Run Keyword If		${statusMoreChoice}==True		Remove String		${currentPrice2}			,		
-#	\	Run Keyword If		${statusMoreChoice}==True		Set Variable		
-#	\	${DisplayedPrice}=		Replace String		${DisplayedPrice}		${rowNum}		NUM
-#	\	${NewSingleFilteredResult}=		Replace String		${SingleFilteredResult}		NUM		${rowNum}
 	\	${previousRow}=		Evaluate	${row}-1
 	\	${previousRowNum}=		Convert To String		${previousRow}		
 	\	Continue For Loop If		${previousRow}==-1
@@ -113,9 +108,9 @@ Verufy Sort By Price For All Rows
 
 Verify Department Filtered Results For All Pages
 	[Arguments]		${filterLabel}
-	: FOR	${pageNumber}		IN RANGE		100	
+	: FOR		${pageNumber}		IN RANGE		100	
 	\	Verify Department Filtered Results From Single Page		${filterLabel}
-	\	Wait Until Element is visible		${NextButton}		timeout=20s
+	\	Wait Until Element is visible		${NextButton}		timeout=50s
 	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
 	\	Run Keyword If		${status}==False		Click Element		${NextButton}
 	\	...			ELSE		Exit For Loop
@@ -134,20 +129,20 @@ Verify Department Filtered Results From Single Page
 	\	${ProductTitleLink}=		Replace String		${ProductTitleLink}		NUM		${resultNum}
 	\	${status}=		Run Keyword And Return Status		Element Should Contain			${SingleDepartmentFilteredResults}			${filterLabel[0]}
 	\	${status1}=		Run Keyword And Return Status		Element Should Contain			${SingleDepartmentFilteredResults}			${filterLabel[1]}
-	\	${status2}		${status3}		Run Keyword If		${status}==False and ${status1}==False			Element Should Be Visible		${SingleDepartmentFilteredResults}		#Verify Department Filtered Results After Clicking On Element		${ProductTitleLink}		${filterLabel}
+	\	${status2}		${status3}		Run Keyword If		${status}==False and ${status1}==False			Verify Department Filtered Results After Clicking On Element		${ProductTitleLink}		${filterLabel}
 	\	Wait Until Element Is Visible			${DepartmentFilteredResults}		timeout=10s	
 	\	Run Keyword If		${status2}==False and ${status3}==False			Element Should Be Visible		${SingleDepartmentFilteredResults}	
 	\	${SingleDepartmentFilteredResults}=		Replace String		${SingleDepartmentFilteredResults}		${resultNum}		NUM
 	\	${ProductTitleLink}=		Replace String		${ProductTitleLink}		${resultNum}		NUM
 	
-#Verify Department Filtered Results After Clicking On Element		
-#	[Arguments]		${ProductTitleLink}		${filterLabel}	
-#	Click Element		${ProductTitleLink}	
-#	Wait Until Element Is Visible			${NewPageProductDetails}		timeout=20s
-#	${status2}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[0]}
-#	${status3}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[1]}
-#	Go Back
-#	Return From Keyword			${status2}		${status3}
+Verify Department Filtered Results After Clicking On Element		
+	[Arguments]		${ProductTitleLink}		${filterLabel}	
+	Click Element		${ProductTitleLink}	
+	Wait Until Element Is Visible			${NewPageProductDetails}		timeout=20s
+	${status2}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[0]}
+	${status3}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[1]}
+	Go Back
+	Return From Keyword			${status2}		${status3}
 	
 Check Price Filter From Gift Cards For All Results
 	[Arguments]		${price}

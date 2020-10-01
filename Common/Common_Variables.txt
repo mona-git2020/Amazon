@@ -3,6 +3,7 @@
 ${MobilesButton}=				css = a[href*="mobiles"]
 ${TodaysDealsButton}=			css=a[href*="gb"]
 ${GiftIdeaButton}=			css=a[href*="gift"]
+${ComputersButton}=		css=a[href*="computers"]
 ${PayOnDeliveryCheckbox}=		css = div#leftNav ul:nth-child(10) li span[class*="checkbox"]
 ${PayOnDeliverySelectedCheckbox}=		css=li[id*="eligible"] span[class*="item"]
 ${BrandSection}=				css = #leftNav ul:nth-child(12) li
@@ -51,7 +52,7 @@ ${NewPageProductDetails}=			css=div#centerCol
 
 ${HoverLinkFromButton}=			css=div[id*="subnav"]>a[class*="hasArrow"]		
 ${SingleHoverLink}=			css=div[id*="subnav"]>a[class*="hasArrow"]:nth-child(NUM)
-${HoverSubMenu}=		css=div[class="nav-template nav-flyout-content"]>div[class="mega-menu"]
+${HoverSubMenu}=		css=a[class*='nav-hasArrow nav-active']			#div[class*="fullWidthSubnavFlyout"]			#div[class="nav-template nav-flyout-content"]>div[class="mega-menu"]
 ${HoverSubSubMenu}=		css=div[class="mm-column"]
 ${ActiveLink}=		css=a[class*="nav-active"]		
 
