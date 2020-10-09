@@ -15,6 +15,7 @@ ${SingleFilteredResult}=	css=div[class*="s-main-slot"]>div[data-index="NUM"]>div
 ${NextButton}=				css=li[class="a-last"]
 ${PreviousButton}=			css=ul.a-pagination>li:nth-child(1)
 ${NextButtonDisabled}=		css=li[class*="disabled a-last"]
+${PaginationList}=			css=ul[class="a-pagination"]
 ${FirstItem}=			css=div[data-index="0"]
 ${FirstItemValue}=		css=div[data-index="0"] a[class*="text-normal"]
 ${ProductTitle}=		css=span[class*="product-title"]

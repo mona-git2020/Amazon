@@ -9,20 +9,19 @@ Suite Teardown	Close Browser
 
 *** Test Cases ***
 Select Gift Cards From Gift Ideas
-	Wait Until Element is visible		${GiftIdeaButton}
+	Wait Until Element Is Visible		${GiftIdeaButton}
 	Click Element		${GiftIdeaButton}
-	Wait Until Element is visible		${GiftFilteredResults}
+	Wait Until Element Is Visible		${GiftFilteredResults}
 	Click Element		${GiftCardsButtonImage}
-	Wait Until Element is visible		${GiftFilteredResults}
-
+	Wait Until Element Is Visible		${GiftFilteredResults}
 
 Select Gift Price From Filter Price And Verify 
 	${status}=		Run Keyword And Return Status		Element Should Be Visible		${GiftFilteredResults}	
 	Click Element		${FilterPriceDropdownButton}
-	Wait Until Element is visible		${TortalFilteredPriceFromDropdoown}
+	Wait Until Element Is Visible		${TortalFilteredPriceFromDropdoown}
 	${totalFilterPrice}=		Get Element Count		${TortalFilteredPriceFromDropdoown}
 	Click Element		${FirstFilterPrice}		
-	Wait Until Element is visible		${GiftFilteredResults}
+	Wait Until Element Is Visible		${GiftFilteredResults}
 	: FOR		${singleDropdown}			IN RANGE		2		${totalFilterPrice}+1
 	\	${dropdownNum}=		Convert To String		${singleDropdown}
 	\	${SelectPriceFromDropdown}=		Replace String		${SelectPriceFromDropdoown}			NUM			${dropdownNum}
@@ -32,8 +31,22 @@ Select Gift Price From Filter Price And Verify
 	\	${price}=		Set Variable		${selectedPrice[-1]}
 	\	${price}=		Get Substring		${price}		1	
 	\	Click Element		${SelectPriceFromDropdown}
-	\	Wait Until Element is visible		${GiftFilteredResults}
+	\	Wait Until Element Is Visible		${GiftFilteredResults}
 	\	Check Price Filter From Gift Cards For All Results		${price}
+		
+*** Keywords ***		
+Check Price Filter From Gift Cards For All Results
+	[Arguments]		${price}
+	${totalGiftResults}=		Get Element Count			${GiftFilteredResults}
+	: FOR		${filter}		IN RANGE		1		${totalGiftResults}+1
+	\	${filterNum}=		Convert To String		${filter}
+	\	${GiftDisplayedPrice}=			Replace String		${GiftDisplayedPrice}		NUM			${filterNum}
+	\	${displayedPrice}=		Get Text		${GiftDisplayedPrice}
+	\	${displayedPrice}=		Get Substring		${displayedPrice}		1	
+	\	${statusPrice1}=		Run Keyword And Return Status		Element Should Contain		${FilterPriceDropdownButton}		Up to	
+	\	${statusPrice2}=		Run Keyword And Return Status		Element Should Contain		${FilterPriceDropdownButton}		Over	
+	\	Run Keyword If		${statusPrice1}==True		Should Be True		${displayedPrice}<=${price}
+	\	Run Keyword If		${statusPrice2}==True		Should Be True		${displayedPrice}>=${price}
 		
 	
 	

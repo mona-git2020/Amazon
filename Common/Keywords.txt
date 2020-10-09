@@ -6,23 +6,22 @@ Open Amazon
 
 Check Filters For All Pages 
 	[Arguments]		${firstValue}		${secondValue1}		${secondValue2}			${secondValue3}
-	: FOR	${pageNumber}		IN RANGE		100	
+	: FOR	${pageNumber}		IN RANGE		1		10
 	\	Check Filters In Single Page		${firstValue}		${secondValue1}		${secondValue2}			${secondValue3}			
-	\	Wait Until Element is visible		${NextButton}		timeout=10s
-	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
+	\	${statusNextButton}=		Run Keyword And Return Status		Wait Until Element Is Visible		${NextButton}		timeout=25s
+	\	${status}=		Run Keyword And Return Status		Wait Until Element Is Visible		${NextButtonDisabled}
 	\	Run Keyword If		${status}==False		Click Element		${NextButton}
 	\	...			ELSE		Exit For Loop
-	\	Wait Until Element is visible		${FilteredResults}		timeout=10s
+	\	Wait Until Element Is Visible		${FilteredResults}		timeout=25s
 	\	${pageNumber}=		Evaluate		${pageNumber}+1
-
 
 Check Filters In Single Page
 	[Arguments]		${firstValue}		${secondValue1}		${secondValue2}		${secondValue3}	
 	${totalResults}=		Get Element Count		${FilteredResults}
-	: FOR	${singleResult}		IN RANGE		1	${totalResults}+1
+	: FOR	${singleResult}		IN RANGE		1	${totalResults}
 	\	${singleResultNum}=		Convert To String		${singleResult}	
 	\	${SingleFilteredResultNew}=			Replace String		${SingleFilteredResult}		NUM		${singleResultNum}
-	\	Element Should Be Visible		 ${SingleFilteredResultNew}		timeout=10s
+	\	Element Should Be Visible		 ${SingleFilteredResultNew}		timeout=20s
 	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${singleResultNum}		NUM
 	\	${status}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Related searches
 	\	Continue For Loop If		${status}==True
@@ -34,6 +33,8 @@ Check Filters In Single Page
 	\	Continue For Loop If		${status3}==True
 	\	${status4}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Shop by 
 	\	Continue For Loop If		${status4}==True
+	\	${status5}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		FREE Delivery by Amazon
+	\	Continue For Loop If		${status5}==True
 	\	${value4}=		Convert To Uppercase		${secondValue2}
 	\	${charList}=		Split String To Characters		${secondValue2}
 	\	${firstChar}=		Convert To Uppercase		${charList[0]}
@@ -43,119 +44,12 @@ Check Filters In Single Page
 	\	${statusResult2}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${secondValue2}	
 	\	${statusResult3}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${secondValue3}			
 	\	${statusResult4}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${value4}			
-	\	Run Keyword If		${statusResult}==False and ${statusResult1}==False and ${statusResult2}==False and ${statusResult3}==False and ${statusResult4}==False		Element Should Contain		${SingleFilteredResultNew}		${value5}			
+	\	${statusResult5}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${value5}			
+	\	Run Keyword If		${statusResult}==False and ${statusResult1}==False and ${statusResult2}==False and ${statusResult3}==False and ${statusResult4}==False and ${statusResult5}==False		Element Should Be Visible		${SingleFilteredResultNew}					
 	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${singleResultNum}		NUM
 	\	${singleResult}=	Evaluate	${singleResult}+1
 
-Verify Sort By Price For All Pages
-	: FOR	${pageNumber}		IN RANGE		100	
-	\	Verufy Sort By Price For All Rows			
-	\	Wait Until Element is visible		${NextButton}		timeout=10s
-	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
-	\	Run Keyword If		${status}==False		Click Element		${NextButton}
-	\	...			ELSE		Exit For Loop
-	\	Wait Until Element is visible		${FilteredResults}		timeout=10s
-	\	${pageNumber}=		Evaluate		${pageNumber}+1
 
-
-Verufy Sort By Price For All Rows	
-	${totalResults}=		Get Element Count		${FilteredResults}
-	: FOR	${row}		IN RANGE		1	${totalResults}+1
-	\	${rowNum}=		Convert To String		${row}	
-	\	${CurrentDisplayedPrice}=		Replace String		${DisplayedPrice}		NUM		${rowNum}
-	\	${NewMoreBuyingChoicePrice}=		Replace String		${MoreBuyingChoicePrice}		NUM		${rowNum}
-	\	${NewSingleFilteredResult}=		Replace String		${SingleFilteredResult}		NUM		${rowNum}
-	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${rowNum}		NUM
-	\	${MoreBuyingChoicePrice}=	Replace String		${MoreBuyingChoicePrice}		${rowNum}		NUM
-	\	${DisplayedPrice}=		Replace String		${DisplayedPrice}		${rowNum}		NUM
-	\	${statusPrice}=		Run Keyword And Return Status		Element Should Be Visible		 ${CurrentDisplayedPrice}
-	\	Continue For Loop If		${statusPrice}==False
-	\	${statusSponsored}=		Run Keyword And Return Status		Element Should Contain 		${NewSingleFilteredResult}		Sponsored
-	\	Continue For Loop If		${statusSponsored}==True
-	\	${currentPrice}=		Get Text		${CurrentDisplayedPrice}
-	\	${currentPrice}=		Remove String		${currentPrice}			,
-	\	${statusMoreChoice}=	Run Keyword And Return Status		Element Should Be Visible		 ${NewMoreBuyingChoicePrice}
-	\	${currentPrice2}=		Run Keyword If		${statusMoreChoice}==True		Get Text		${NewMoreBuyingChoicePrice}
-	\	${currentPrice2}=		Run Keyword If		${statusMoreChoice}==True		Get Substring		${currentPrice2}			1		
-	\	${currentPrice2}=		Run Keyword If		${statusMoreChoice}==True		Remove String		${currentPrice2}			,		
-	\	${previousRow}=		Evaluate	${row}-1
-	\	${previousRowNum}=		Convert To String		${previousRow}		
-	\	Continue For Loop If		${previousRow}==-1
-	\	${PreviousDisplayedPrice}=	Replace String		${DisplayedPrice}		NUM		${previousRowNum}	
-	\	${NewSingleFilteredResult}=		Replace String		${SingleFilteredResult}		NUM		${previousRowNum}
-	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${rowNum}		NUM
-	\	${MoreBuyingChoicePrice}=	Replace String		${MoreBuyingChoicePrice}		${rowNum}		NUM
-	\	${DisplayedPrice}=		Replace String		${DisplayedPrice}		${rowNum}		NUM
-	\	${statusSponsored}=		Run Keyword And Return Status		Element Should Contain 		${NewSingleFilteredResult}		Sponsored
-	\	Continue For Loop If		${statusSponsored}==True
-	\	${statusPrice1}=		Run Keyword And Return Status		Element Should Be Visible		 ${PreviousDisplayedPrice}
-	\	Continue For Loop If		${statusPrice1}==False
-	\	${previousPrice}=		Get Text		${PreviousDisplayedPrice}
-	\	${previousPrice}=		Remove String		${previousPrice}		,
-	\	${statusMoreChoice2}=	Run Keyword And Return Status		Element Should Be Visible		 ${NewMoreBuyingChoicePrice}
-	\	${previousPrice2}=		Run Keyword If		${statusMoreChoice}==True		Get Text		${NewMoreBuyingChoicePrice}
-	\	${previousPrice2}=		Run Keyword If		${statusMoreChoice}==True		Get Substring		${previousPrice2}			1		
-	\	${previousPrice2}=		Run Keyword If		${statusMoreChoice}==True		Remove String		${previousPrice2}			,		
-	\	${status}=		Run Keyword And Return Status		Element Should Contain 		${SortByButton}		Low to High
-	\	Run Keyword If		${status}==True and ${statusMoreChoice}==True and ${statusMoreChoice2}==True			Should Be True			${PreviousPrice2}<=${currentPrice2}
-	\	...			ELSE IF			${status}==True and ${statusMoreChoice}==False and ${statusMoreChoice2}==True			Should Be True			${PreviousPrice2}<=${currentPrice}
-	\	...			ELSE IF			${status}==True and ${statusMoreChoice}==False and ${statusMoreChoice2}==False			Should Be True			${PreviousPrice}<=${currentPrice}
-	\	Run Keyword If		${status}==False and ${statusMoreChoice}==True and ${statusMoreChoice2}==True		Should Be True			${PreviousPrice2}>=${currentPrice2}	
-	\	...			ELSE IF			${status}==False and ${statusMoreChoice}==False and ${statusMoreChoice2}==True			Should Be True			${PreviousPrice2}>=${currentPrice}
-	\	...			ELSE IF			${status}==False and ${statusMoreChoice}==False and ${statusMoreChoice2}==False			Should Be True			${PreviousPrice}>=${currentPrice}
-	\	Wait Until Element is visible		${FilteredResults}		timeout=10s
-	\	${row}=		Evaluate	${row}+1
-
-Verify Department Filtered Results For All Pages
-	[Arguments]		${filterLabel}
-	: FOR		${pageNumber}		IN RANGE		100	
-	\	Verify Department Filtered Results From Single Page		${filterLabel}
-	\	Wait Until Element is visible		${NextButton}		timeout=50s
-	\	${status}=		Run Keyword And Return Status		Element Should Be Visible		${NextButtonDisabled}
-	\	Run Keyword If		${status}==False		Click Element		${NextButton}
-	\	...			ELSE		Exit For Loop
-	\	Wait Until Element is visible		${FilteredResults}		timeout=10s
-	\	${pageNumber}=		Evaluate		${pageNumber}+1
-
-
-Verify Department Filtered Results From Single Page
-	[Arguments]		${filterLabel}
-	${filterLabel}=		Remove String		${filterLabel}		(		)	
-	${filterLabel}=		Split String		${filterLabel}		${SPACE}
-	${totalResults}=		Get Element Count		${DepartmentFilteredResults}
-	: FOR	${result}		IN RANGE		1	${totalResults}+1
-	\	${resultNum}=		Convert To String		${result}
-	\	${SingleDepartmentFilteredResults}=		Replace String		${SingleDepartmentFilteredResults}		NUM		${resultNum}
-	\	${ProductTitleLink}=		Replace String		${ProductTitleLink}		NUM		${resultNum}
-	\	${status}=		Run Keyword And Return Status		Element Should Contain			${SingleDepartmentFilteredResults}			${filterLabel[0]}
-	\	${status1}=		Run Keyword And Return Status		Element Should Contain			${SingleDepartmentFilteredResults}			${filterLabel[1]}
-	\	${status2}		${status3}		Run Keyword If		${status}==False and ${status1}==False			Verify Department Filtered Results After Clicking On Element		${ProductTitleLink}		${filterLabel}
-	\	Wait Until Element Is Visible			${DepartmentFilteredResults}		timeout=10s	
-	\	Run Keyword If		${status2}==False and ${status3}==False			Element Should Be Visible		${SingleDepartmentFilteredResults}	
-	\	${SingleDepartmentFilteredResults}=		Replace String		${SingleDepartmentFilteredResults}		${resultNum}		NUM
-	\	${ProductTitleLink}=		Replace String		${ProductTitleLink}		${resultNum}		NUM
-	
-Verify Department Filtered Results After Clicking On Element		
-	[Arguments]		${ProductTitleLink}		${filterLabel}	
-	Click Element		${ProductTitleLink}	
-	Wait Until Element Is Visible			${NewPageProductDetails}		timeout=20s
-	${status2}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[0]}
-	${status3}=		Run Keyword And Return Status			Element Should Contain			${NewPageProductDetails}		${filterLabel[1]}
-	Go Back
-	Return From Keyword			${status2}		${status3}
-	
-Check Price Filter From Gift Cards For All Results
-	[Arguments]		${price}
-	${totalGiftResults}=		Get Element Count			${GiftFilteredResults}
-	: FOR		${filter}		IN RANGE		1		${totalGiftResults}+1
-	\	${filterNum}=		Convert To String		${filter}
-	\	${GiftDisplayedPrice}=			Replace String		${GiftDisplayedPrice}		NUM			${filterNum}
-	\	${displayedPrice}=		Get Text		${GiftDisplayedPrice}
-	\	${displayedPrice}=		Get Substring		${displayedPrice}		1	
-	\	${statusPrice1}=		Run Keyword And Return Status		Element Should Contain		${FilterPriceDropdownButton}		Up to	
-	\	${statusPrice2}=		Run Keyword And Return Status		Element Should Contain		${FilterPriceDropdownButton}		Over	
-	\	Run Keyword If		${statusPrice1}==True		Should Be True		${displayedPrice}<=${price}
-	\	Run Keyword If		${statusPrice2}==True		Should Be True		${displayedPrice}>=${price}
 
 	
 	

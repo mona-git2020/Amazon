@@ -9,55 +9,19 @@ Suite Teardown	Close Browser
 
 *** Test Cases ***
 Search The Product Name 
-	Wait Until Element is visible		${MobilesButton}
-	Wait Until Element is visible		${SearchProduct}
+	Wait Until Element Is Visible		${MobilesButton}
+	Wait Until Element Is Visible		${SearchProduct}
 	Click Element			${SearchProduct}
 	Input Text			${SearchProduct}		${enterSearchProductName[2]}
 	Press Keys			${SearchProduct}		ENTER
-	Wait Until Element is visible		${FilteredResults}		timeout=15s
+	Wait Until Element Is Visible		${FilteredResults}		timeout=15s
 	
-	
-Verify Filtered Results According To Search Product
+Verify Filtered Results According To Search Product And Pagination
 	${searchProductName}=		Set Variable	${enterSearchProductName[2]}
 	${searchValue}=		Split String		${enterSearchProductName[2]}
 	${productName1}=			Set Variable	${searchValue[0]}
 	${productName2}=		Convert To Lowercase		${productName1}
 	Check Filters For All Pages			${searchProductName}		${searchValue}		${productName2}			${productName1}
 
-Verify Previous And Next Button	
-	Wait Until Element is visible		${NextButton}		timeout=15s
-	Wait Until Element is visible		${PreviousButton}		timeout=15s	
-	${statusFirstPage}=		Run Keyword And Return Status		Element Should Contain			${SelectedPageNumber}		1
-	Run Keyword If		${statusFirstPage}==False		Click Element		${FirstPage}
-	Wait Until Element is visible		${FilteredResults}		timeout=15s	
-	Wait Until Element is visible		${SelectedPageNumber}		timeout=15s
-	${value}=		Get Text		${SelectedPageNumber}
-	Click Element		${NextButton}
-	Wait Until Element is visible		${SelectedPageNumber}		timeout=15s
-	Wait Until Element is visible		${FilteredResults}		timeout=15s
-	Element Should Contain			${SelectedPageNumber}		2
-	Wait Until Element is visible		${PreviousButton}		timeout=15s	
-	Click Element		${PreviousButton}
-	Wait Until Element is visible		${FilteredResults}		timeout=15s
-	Wait Until Element is visible		${SelectedPageNumber}		timeout=15s
-	Element Should Contain			${SelectedPageNumber}		1	
-	${statusFirstPage1}=		Run Keyword And Return Status		Element Should Contain			${SelectedPageNumber}		1
-	Run Keyword If		${statusFirstPage1}==True		Click Element		${SecondPage}	
-	Wait Until Element is visible		${FilteredResults}		timeout=15s	
-	Wait Until Element is visible		${SelectedPageNumber}		timeout=15s
-	Element Should Contain			${SelectedPageNumber}		2
-	${statusFourthPage}=		Run Keyword And Return Status		Element Should Be Visible			${FouthPage}
-	Run Keyword If		${statusFourthPage}==False		Click Element		${ThirdPage}
-	Wait Until Element is visible		${FilteredResults}		timeout=15s
-	Wait Until Element is visible		${SelectedPageNumber}		timeout=15s
-	Element Should Contain			${SelectedPageNumber}		3
-	Element Should Be Enabled			${FouthPage}
-	Click Element		${FirstPage}
-	Wait Until Element is visible		${SelectedPageNumber}		timeout=15s
-	${status}=		Run Keyword And Return Status		 Page Should Contain		Language Settings
-	Run Keyword If		${status}==True			Run Keywords		Go Back			AND			Click Element		${FirstPage}
-	Wait Until Element is visible		${SelectedPageNumber}		timeout=15s
-	Wait Until Element is visible		${FilteredResults}		timeout=15s	
-	Element Should Contain			${SelectedPageNumber}		1
-	Element Should Not Be Visible			${FouthPage}
+
 	

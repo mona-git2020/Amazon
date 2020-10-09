@@ -9,34 +9,28 @@ Suite Teardown	Close Browser
 
 *** Test Cases ***
 Select Pay on Delivery Filter From Mobile Menu  
-	Wait Until Element is visible		${MobilesButton}
+	Wait Until Element Is Visible		${MobilesButton}
 	Click Element		${MobilesButton}
-	Wait Until Element is visible		${PayOnDeliveryCheckbox}
+	Wait Until Element Is Visible		${PayOnDeliveryCheckbox}
+
+Check All Results According to Pay on Delivery Filter	
 	${valueCheckbox}=		Get Text	${PayOnDeliveryCheckbox}
 	Click Element		${PayOnDeliveryCheckbox}
 	Element Should Contain		${ToolbarSection}		${valueCheckbox}
-	Wait Until Element is visible		${FilteredResults}
-
-Check All Results According to Pay on Delivery Filter	
-	: FOR	${pageNumber}		IN RANGE		1000	
-	\	${statusResults}=		Element Should Be Visible		${FilteredResults}
-	\	Wait Until Element is visible		${NextButton}		timeout=10s	
-	\	${status}=		Run Keyword And Return Status		Wait Until Element is visible		${NextButtonDisabled}		timeout=15s
-	\	Run Keyword If		${status}==False		Click Element		${NextButton}
-	\	...			ELSE		Exit For Loop
-	\	Wait Until Element is visible		${FilteredResults}
-	\	${pageNumber}=		Evaluate		${pageNumber}+1
-	Go Back	
-	Wait Until Element is visible		${FilteredResults}
-	Wait Until Element is visible		${PayOnDeliverySelectedCheckbox}
+	Wait Until Element Is Visible		${FilteredResults}
+	${totalResults}=	Get Element Count		${FilteredResults}	
+	: FOR	${singleResult}		IN RANGE		1	${totalResults}
+	\	${singleResultNum}=		Convert To String		${singleResult}	
+	\	${SingleFilteredResultNew}=			Replace String		${SingleFilteredResult}		NUM		${singleResultNum}
+	\	Element Should Be Visible		 ${SingleFilteredResultNew}		timeout=20s
+	\	${statusResults}=		Run Keyword And Return Status		Wait Until Element Is Visible		${FilteredResults}		timeout=5s
+	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${singleResultNum}		NUM
+	Wait Until Element Is Visible		${PayOnDeliverySelectedCheckbox}
 	Click Element		${PayOnDeliverySelectedCheckbox}
-	Wait Until Element is Not visible		${ToolbarSection}
+	Wait Until Element Is Not Visible		${ToolbarSection}
 	
 Select All Filters From Brands Filter Section and Check All Results According to Selected Filter
-	${statusCheckbox}=		Run Keyword And Return Status		Element Should Be Visible		${PayOnDeliverySelectedCheckbox}
-	Run Keyword If		${statusCheckbox}==True			Click Element		${PayOnDeliverySelectedCheckbox}	
-	Wait Until Element is visible		${MobilesButton}
-	Wait Until Element is visible		${FilteredResults}		timeout=10s	
+	Wait Until Element Is Visible		${BrandSection}		timeout=10s	
 	${totalFilters}=	Get Element Count		${BrandSection}
 	: For	${filter}		IN RANGE	1	${totalFilters}
 	\	${filternum}=	Convert To String		${filter}	
@@ -46,20 +40,21 @@ Select All Filters From Brands Filter Section and Check All Results According to
 	\	log		${BrandSectionCheckbox}	
 	\	${BrandSectionCheckbox}=	Replace String		${BrandSectionCheckbox}		VALUE		${keys[${num}]}
 	\	log		${BrandSectionCheckbox}	
-	\	Wait Until Element is visible		${BrandSectionCheckbox}		timeout=15s	
+	\	Wait Until Element Is Visible		${BrandSectionCheckbox}		timeout=5s	
 	\	Click Element		${BrandSectionCheckbox}
-	\	${statusToolbar}=		Run Keyword And Return Status		Wait Until Element is visible		${ToolbarSection}		timeout=15s
+	\	${statusToolbar}=		Run Keyword And Return Status		Wait Until Element Is Visible		${ToolbarSection}		timeout=5s
 	\	Run Keyword If		${statusToolbar}==False		Click Element		${BrandSectionCheckbox}
 	\	Element Should Contain		${ToolbarSection}		${keys[${num}]}
-	\	Wait Until Element is visible		${FilteredResults}
+	\	Wait Until Element Is Visible		${FilteredResults}
 	\	${firstValue}=		Get From Dictionary		${brandsList}		${keys[${num}]}
-	\	Check Filters For All Pages		${firstValue}		${keys[${num}]}
+	\	${lowerValue}=		Convert To Lowercase		${firstValue}
+	\	${upperValue}=		Convert To Uppercase		${firstValue}
+	\	Check Filters In Single Page		${firstValue}		${keys[${num}]}		${lowerValue}		${upperValue}
 	\	${BrandSectionCheckbox}=	Replace String		${BrandSectionCheckbox}		${keys[${num}]}		VALUE	
 	\	${BrandSectionSelectedCheckbox}=	Replace String		${BrandSectionSelectedCheckbox}		VALUE		${keys[${num}]}
-	\	${statusFilters}=		Run Keyword And Return Status		Wait Until Element is visible		${BrandSectionSelectedCheckbox}	
-	\	Go Back	
-	\	Wait Until Element is visible		${BrandSectionSelectedCheckbox}
-	\	Click Element		${BrandSectionSelectedCheckbox}	
+	\	Wait Until Element Is Visible		${BrandSectionSelectedCheckbox}		timeout=5s
+	\	Click Element		${BrandSectionSelectedCheckbox}
+	\	${statusFilters}=		Run Keyword And Return Status		Wait Until Element Is Not Visible		${ToolbarSection}		timeout=5s
 	\	${BrandSectionSelectedCheckbox}=	Replace String		${BrandSectionSelectedCheckbox}		${keys[${num}]}		VALUE		
 	
 	
