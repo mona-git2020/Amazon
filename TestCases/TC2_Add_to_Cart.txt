@@ -9,24 +9,23 @@ Suite Teardown	Close Browser
 
 *** Test Cases ***
 Select Any Item And Add Item Into Cart 
-	Wait Until Element is visible		${MobilesButton}
+	Wait Until Element Is Visible		${MobilesButton}
 	Click Element		${MobilesButton}
 	${BrandSectionCheckbox}=	Replace String		${BrandSectionCheckbox}		VALUE		${enterSearchProductName[0]}
-	Wait Until Element is visible		${BrandSectionCheckbox}
+	Wait Until Element Is Visible		${BrandSectionCheckbox}
 	${valueCheckbox}=		Get Text	${BrandSectionCheckbox}
 	Click Element		${BrandSectionCheckbox}
 	Element Should Contain		${ToolbarSection}		${valueCheckbox}
 	Click Element		${FirstItemValue}
 	Switch Window		NEW
-	Wait Until Element is visible		${AddToCartButton}		timeout=15s
-	Wait Until Element is visible		${CartNavButton}	
+	Wait Until Element Is Visible		${AddToCartButton}		timeout=15s
+	Wait Until Element Is Visible		${CartNavButton}	
 	Click Element		${AddToCartButton}	
 
-	
 Verify Item Into Cart
 	Click Element		${CartNavButton}	
 	Element Should Contain		${SubtotalActiveCart}		1	
-	Wait Until Element is visible		${ProductTitle}		timeout=15s	
+	Wait Until Element Is Vsible		${ProductTitle}		timeout=15s	
 	${valueProductTitle}=	Get Text		${ProductTitle}
 	Switch Window		MAIN
 	${valueItem}=		Get Text	${FirstItemValue}	

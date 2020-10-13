@@ -9,12 +9,9 @@ Suite Teardown	Close Browser
 
 *** Test Cases ***
 Hover On Links From Mobiles 
-	Wait Until Element is visible		${MobilesButton}
+	Wait Until Element Is Visible		${MobilesButton}
 	Click Element		${MobilesButton}
-	Wait Until Element is visible		${HoverLinkFromButton}
-
-
-
+	Wait Until Element Is Visible		${HoverLinkFromButton}
 
 Verify Hover Suggestions
 	${totalLinks}=		Get Element Count		${HoverLinkFromButton}
@@ -23,8 +20,8 @@ Verify Hover Suggestions
 	\	${SingleHoverLink}=		Replace String		${SingleHoverLink}		NUM		${linkNum}
 	\	${hoverLinkValue}=		Get Text		${SingleHoverLink}
 	\	Mouse Over		${SingleHoverLink}
-	\	${status}=		Run Keyword And Return Status		Wait Until Element is visible		${ActiveLink}		timeout=25s
+	\	${status}=		Run Keyword And Return Status		Wait Until Element Is Visible		${ActiveLink}
 	\	${hoverValue}=		Get Text	${ActiveLink}
 	\	Mouse Out		${MobilesButton}
-	\	Wait Until Element Is Not Visible		${ActiveLink}		timeout=25s
+	\	Wait Until Element Is Not Visible		${ActiveLink}
 	\	${SingleHoverLink}=		Replace String		${SingleHoverLink}		${linkNum}		NUM	

@@ -22,25 +22,22 @@ Check All Results According to Pay on Delivery Filter
 	: FOR	${singleResult}		IN RANGE		1	${totalResults}
 	\	${singleResultNum}=		Convert To String		${singleResult}	
 	\	${SingleFilteredResultNew}=			Replace String		${SingleFilteredResult}		NUM		${singleResultNum}
-	\	Element Should Be Visible		 ${SingleFilteredResultNew}		timeout=20s
-	\	${statusResults}=		Run Keyword And Return Status		Wait Until Element Is Visible		${FilteredResults}		timeout=5s
+	\	${statusResults}=		Run Keyword And Return Status		Element Should Be Visible		${SingleFilteredResultNew}
 	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${singleResultNum}		NUM
 	Wait Until Element Is Visible		${PayOnDeliverySelectedCheckbox}
 	Click Element		${PayOnDeliverySelectedCheckbox}
 	Wait Until Element Is Not Visible		${ToolbarSection}
 	
-Select All Filters From Brands Filter Section and Check All Results According to Selected Filter
+Select All Filters From Brands Filter Section and Check All Results According To Selected Filter
 	Wait Until Element Is Visible		${BrandSection}		timeout=10s	
 	${totalFilters}=	Get Element Count		${BrandSection}
 	: For	${filter}		IN RANGE	1	${totalFilters}
 	\	${filternum}=	Convert To String		${filter}	
 	\	${num} =	Evaluate		${filternum}-1
 	\	${keys}=	Get Dictionary Keys		${brandsList}		
-	\	log		${keys[${num}]}
-	\	log		${BrandSectionCheckbox}	
 	\	${BrandSectionCheckbox}=	Replace String		${BrandSectionCheckbox}		VALUE		${keys[${num}]}
 	\	log		${BrandSectionCheckbox}	
-	\	Wait Until Element Is Visible		${BrandSectionCheckbox}		timeout=5s	
+	\	Wait Until Element Is Visible		${BrandSectionCheckbox}		
 	\	Click Element		${BrandSectionCheckbox}
 	\	${statusToolbar}=		Run Keyword And Return Status		Wait Until Element Is Visible		${ToolbarSection}		timeout=5s
 	\	Run Keyword If		${statusToolbar}==False		Click Element		${BrandSectionCheckbox}
@@ -56,8 +53,3 @@ Select All Filters From Brands Filter Section and Check All Results According to
 	\	Click Element		${BrandSectionSelectedCheckbox}
 	\	${statusFilters}=		Run Keyword And Return Status		Wait Until Element Is Not Visible		${ToolbarSection}		timeout=5s
 	\	${BrandSectionSelectedCheckbox}=	Replace String		${BrandSectionSelectedCheckbox}		${keys[${num}]}		VALUE		
-	
-	
-
-	
-	

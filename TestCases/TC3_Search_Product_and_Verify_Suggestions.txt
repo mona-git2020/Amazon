@@ -24,8 +24,7 @@ Verify All Suggestions According to Search Product
 	\	${lowerCaseValue}=		Convert To Lower Case		${enterSearchProductName[0]}
 	\	${suggestionsValue}=		Get Text		${SingleSuggestionsNew}
 	\	${statusProduct}=		Run Keyword And Return Status		Element Should Contain		${SingleSuggestionsNew}		${extraSuggestions[0]}
-	\	Continue For Loop IF		${statusProduct}==True
+	\	Continue For Loop If		${statusProduct}==True
 	\	${statusProductName}=		Run Keyword And Return Status		Element Should Contain		${SingleSuggestionsNew}		${enterSearchProductName[0]}
 	\	Run Keyword If		${statusProductName}==False			Element Should Contain		${SingleSuggestionsNew}		${lowerCaseValue}
 	\	${SingleSuggestions}=		Replace String		${SingleSuggestions}		${number}		NUM
-	

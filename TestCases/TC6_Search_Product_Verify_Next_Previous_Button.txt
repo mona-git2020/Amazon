@@ -16,12 +16,9 @@ Search The Product Name
 	Press Keys			${SearchProduct}		ENTER
 	Wait Until Element Is Visible		${FilteredResults}		timeout=15s
 	
-Verify Filtered Results According To Search Product And Pagination
+Verify Filtered Results According To Search Product And Verify Pagination
 	${searchProductName}=		Set Variable	${enterSearchProductName[2]}
 	${searchValue}=		Split String		${enterSearchProductName[2]}
 	${productName1}=			Set Variable	${searchValue[0]}
 	${productName2}=		Convert To Lowercase		${productName1}
-	Check Filters For All Pages			${searchProductName}		${searchValue}		${productName2}			${productName1}
-
-
-	
+	Check Filters For All Pages			${searchProductName}		${searchValue}		${productName2}			${productName1}	

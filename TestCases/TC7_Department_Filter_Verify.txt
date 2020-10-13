@@ -22,17 +22,13 @@ Verify All Filter Department
 	\	${filterLabel}=		Get Text		${DepartmentFilterLabel}
 	\	Click Element		${DepartmentFilterLabel}
 	\	Wait Until Element Is Visible		${AllDealsShowingSection}		timeout=10s	
-	\	Run Keyword And Return Status		Element Should Contain			${AllDealsShowingSection}			${filterLabel}
-	\	Wait Until Element Is Visible		${DepartmentFilteredResults}		timeout=10s
-	\	${status}=		Run Keyword And Return Status		Checkbox Should Be Selected		${DepartmentFilterCheckbox}
-	\	${statusPagination}=		Run Keyword And Return Status		Wait Until Element Is Visible		${PaginationList}		timeout=25s
+	\	${statusSelectedFilter}=		Run Keyword And Return Status		Element Should Contain			${AllDealsShowingSection}			${filterLabel}
+	\	${statusSelectedCheckbox}=		Run Keyword And Return Status		Checkbox Should Be Selected		${DepartmentFilterCheckbox}
 	\	Verify Department Filtered Results For Single Page			${filterLabel}
-	\	Run Keyword And Return Status		Element Should Be Visible		${DepartmentFilteredResults}
 	\	Click Element		${DepartmentFilterLabel}
 	\	Wait Until Element Is Visible		${DepartmentFilteredResults}		timeout=10s
-	\	Element Should Be Visible		${DepartmentFilteredResults}
-	\	Run Keyword And Return Status		Element Should Not Contain			${AllDealsShowingSection}			${filterLabel}
-	\	Run Keyword And Return Status		Element Should Not Contain			${DepartmentFilterCheckbox}			${filterLabel}
+	\	${statusFilter}=		Run Keyword And Return Status		Element Should Not Contain			${AllDealsShowingSection}			${filterLabel}
+	\	${statusCheckbox}=		Run Keyword And Return Status		Checkbox Should Not Be Selected			${DepartmentFilterCheckbox}	
 	\	${DepartmentFilterLabel}=		Replace String		${DepartmentFilterLabel}		${filterNum}		NUM
 	\	${DepartmentFilterCheckbox}=		Replace String			${DepartmentFilterCheckbox}			${filterNum}		NUM
 
@@ -45,11 +41,7 @@ Verify Department Filtered Results For Single Page
 	: FOR	${result}		IN RANGE		1	${totalResults}+1
 	\	${resultNum}=		Convert To String		${result}
 	\	${SingleDepartmentFilteredResults}=		Replace String		${SingleDepartmentFilteredResults}		NUM		${resultNum}
-	\	${ProductTitleLink}=		Replace String		${ProductTitleLink}		NUM		${resultNum}
 	\	${status}=		Run Keyword And Return Status		Element Should Contain			${SingleDepartmentFilteredResults}			${filterLabel[0]}
 	\	${status1}=		Run Keyword And Return Status		Element Should Contain			${SingleDepartmentFilteredResults}			${filterLabel[1]}
 	\	Run Keyword If		${status}==False and ${status1}==False			Element Should Be Visible		${SingleDepartmentFilteredResults}	
 	\	${SingleDepartmentFilteredResults}=		Replace String		${SingleDepartmentFilteredResults}		${resultNum}		NUM
-	\	${ProductTitleLink}=		Replace String		${ProductTitleLink}		${resultNum}		NUM
-	
-	

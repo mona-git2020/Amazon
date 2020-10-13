@@ -1,12 +1,12 @@
 *** Variables ***
 
-${MobilesButton}=				css = a[href*="mobiles"]
-${TodaysDealsButton}=			css=a[href*="gb"]
+${MobilesButton}=			css = a[href*="mobiles"]
+${TodaysDealsButton}=		css=a[href*="gb"]
 ${GiftIdeaButton}=			css=a[href*="gift"]
-${ComputersButton}=		css=a[href*="computers"]
+${ComputersButton}=			css=a[href*="computers"]
 ${PayOnDeliveryCheckbox}=		css = div#leftNav ul:nth-child(10) li span[class*="checkbox"]
 ${PayOnDeliverySelectedCheckbox}=		css=li[id*="eligible"] span[class*="item"]
-${BrandSection}=				css = #leftNav ul:nth-child(12) li
+${BrandSection}=			css = #leftNav ul:nth-child(12) li
 ${BrandSectionCheckbox}=		css = #leftNav div[data-a-input-name*="VALUE"] span[class*="checkbox"]
 ${BrandSectionSelectedCheckbox}=		css=#brandsRefinements li[id*="VALUE"] span[class*="item"]
 ${ToolbarSection}=			css=h1[class*="toolbar"] div.sg-col-inner
@@ -49,14 +49,11 @@ ${AllDealsShowingValue}=			css=div[id*='all_summary']>div>span:nth-child(5)
 ${SeeMoreDeparmentExpander}=		css=span[class*='expander']
 ${ProductTitleLink}=				css=div[class*='none padCenter']>div>div[id*='dealView']:nth-child(NUM) a#dealTitle
 ${NewPageProductDetails}=			css=div#centerCol
-
-
 ${HoverLinkFromButton}=			css=div[id*="subnav"]>a[class*="hasArrow"]		
 ${SingleHoverLink}=			css=div[id*="subnav"]>a[class*="hasArrow"]:nth-child(NUM)
-${HoverSubMenu}=		css=a[class*='nav-hasArrow nav-active']			#div[class*="fullWidthSubnavFlyout"]			#div[class="nav-template nav-flyout-content"]>div[class="mega-menu"]
+${HoverSubMenu}=		css=a[class*='nav-hasArrow nav-active']			
 ${HoverSubSubMenu}=		css=div[class="mm-column"]
 ${ActiveLink}=		css=a[class*="nav-active"]		
-
 ${GiftCardsButtonImage}=		css=a[href*="Gift-Cards"]>div
 ${GiftFilteredResults}=			css=div[id="gcx-gf-section-0"] div[class*="sc-kpOJdX"]
 ${GiftDisplayedPrice}=			css=div[id="gcx-gf-section-0"] div[class*="sc-kpOJdX"]:nth-child(NUM) span[data-test="price"]

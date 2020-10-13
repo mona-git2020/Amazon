@@ -15,13 +15,11 @@ Search The Product Name
 	Input Text			${SearchProduct}		${enterSearchProductName[0]}
 	Wait Until Element Is Visible		${Suggestions}		timeout=15s
 
-
-Select From Suggestions And Verify All The Filtered Results According to Selected Suggestion 
-	${suggestionValue}=	Get Text	${FirstSuggestion}
+Select From Suggestions And Verify All The Filtered Results According To Selected Suggestion 
+	${suggestionValue}=		Get Text	${FirstSuggestion}
 	Click Element		${FirstSuggestion}
 	${productName}=		Set Variable		${enterSearchProductName[0]}
 	${productName1}=		Convert To Lowercase		${productName}
 	${suggestionValueLower}=		Convert To Lowercase		${suggestionValue}
 	Wait Until Element Is Visible		${FilteredResults}		timeout=15s
 	Check Filters In Single Page		${suggestionValue}		${productName}		${productName1}		${suggestionValueLower}
-

@@ -6,13 +6,13 @@ Open Amazon
 
 Check Filters For All Pages 
 	[Arguments]		${firstValue}		${secondValue1}		${secondValue2}			${secondValue3}
-	: FOR	${pageNumber}		IN RANGE		1		10
+	: FOR	${pageNumber}		IN RANGE		1		5
 	\	Check Filters In Single Page		${firstValue}		${secondValue1}		${secondValue2}			${secondValue3}			
 	\	${statusNextButton}=		Run Keyword And Return Status		Wait Until Element Is Visible		${NextButton}		timeout=25s
 	\	${status}=		Run Keyword And Return Status		Wait Until Element Is Visible		${NextButtonDisabled}
 	\	Run Keyword If		${status}==False		Click Element		${NextButton}
 	\	...			ELSE		Exit For Loop
-	\	Wait Until Element Is Visible		${FilteredResults}		timeout=25s
+	\	Wait Until Element Is Visible		${FilteredResults}		timeout=15s
 	\	${pageNumber}=		Evaluate		${pageNumber}+1
 
 Check Filters In Single Page
@@ -48,12 +48,3 @@ Check Filters In Single Page
 	\	Run Keyword If		${statusResult}==False and ${statusResult1}==False and ${statusResult2}==False and ${statusResult3}==False and ${statusResult4}==False and ${statusResult5}==False		Element Should Be Visible		${SingleFilteredResultNew}					
 	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${singleResultNum}		NUM
 	\	${singleResult}=	Evaluate	${singleResult}+1
-
-
-
-	
-	
-	
-	
-	
-	
