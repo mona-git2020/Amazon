@@ -46,7 +46,7 @@ ${AllDealsShowingSection}=			css=div[id*='all_summary']
 ${DepartmentFilteredResults}=		css=div[class*='none padCenter']>div>div
 ${SingleDepartmentFilteredResults}=		css=div[class*='none padCenter']>div>div[id*='dealView']:nth-child(NUM)
 ${AllDealsShowingValue}=			css=div[id*='all_summary']>div>span:nth-child(5)
-${SeeMoreDeparmentExpander}=		css=span[class*='expander']
+${SeeMoreDepartmentExpander}=		css=span[class*='expander']
 ${ProductTitleLink}=				css=div[class*='none padCenter']>div>div[id*='dealView']:nth-child(NUM) a#dealTitle
 ${NewPageProductDetails}=			css=div#centerCol
 ${HoverLinkFromButton}=			css=div[id*="subnav"]>a[class*="hasArrow"]		
