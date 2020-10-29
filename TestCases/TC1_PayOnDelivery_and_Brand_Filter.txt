@@ -16,7 +16,8 @@ Select Pay on Delivery Filter From Mobile Menu
 Check All Results According to Pay on Delivery Filter	
 	${valueCheckbox}=		Get Text	${PayOnDeliveryCheckbox}
 	Click Element		${PayOnDeliveryCheckbox}
-	Element Should Contain		${ToolbarSection}		${valueCheckbox}
+	Wait Until Element Is Visible		${ToolbarSection}		
+	${statusSelectedCheckbox}=		Run Keyword And Return Status		Element Should Contain		${ToolbarSection}		${valueCheckbox}
 	Wait Until Element Is Visible		${FilteredResults}
 	${totalResults}=	Get Element Count		${FilteredResults}	
 	: FOR	${singleResult}		IN RANGE		1	${totalResults}
@@ -37,7 +38,7 @@ Select All Filters From Brands Filter Section and Check All Results According To
 	\	${keys}=	Get Dictionary Keys		${brandsList}		
 	\	${BrandSectionCheckbox}=	Replace String		${BrandSectionCheckbox}		VALUE		${keys[${num}]}
 	\	log		${BrandSectionCheckbox}	
-	\	Wait Until Element Is Visible		${BrandSectionCheckbox}		
+	\	Wait Until Element Is Visible		${BrandSectionCheckbox}		timeout=10s
 	\	Click Element		${BrandSectionCheckbox}
 	\	${statusToolbar}=		Run Keyword And Return Status		Wait Until Element Is Visible		${ToolbarSection}		timeout=5s
 	\	Run Keyword If		${statusToolbar}==False		Click Element		${BrandSectionCheckbox}
@@ -49,7 +50,7 @@ Select All Filters From Brands Filter Section and Check All Results According To
 	\	Check Filters In Single Page		${firstValue}		${keys[${num}]}		${lowerValue}		${upperValue}
 	\	${BrandSectionCheckbox}=	Replace String		${BrandSectionCheckbox}		${keys[${num}]}		VALUE	
 	\	${BrandSectionSelectedCheckbox}=	Replace String		${BrandSectionSelectedCheckbox}		VALUE		${keys[${num}]}
-	\	Wait Until Element Is Visible		${BrandSectionSelectedCheckbox}		timeout=5s
+	\	Wait Until Element Is Visible		${BrandSectionSelectedCheckbox}		timeout=10s
 	\	Click Element		${BrandSectionSelectedCheckbox}
 	\	${statusFilters}=		Run Keyword And Return Status		Wait Until Element Is Not Visible		${ToolbarSection}		timeout=5s
 	\	${BrandSectionSelectedCheckbox}=	Replace String		${BrandSectionSelectedCheckbox}		${keys[${num}]}		VALUE		

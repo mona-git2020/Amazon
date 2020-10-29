@@ -55,8 +55,8 @@ ${HoverSubMenu}=		css=a[class*='nav-hasArrow nav-active']
 ${HoverSubSubMenu}=		css=div[class="mm-column"]
 ${ActiveLink}=		css=a[class*="nav-active"]		
 ${GiftCardsButtonImage}=		css=a[href*="Gift-Cards"]>div
-${GiftFilteredResults}=			css=div[id="gcx-gf-section-0"] div[class*="sc-kpOJdX"]
-${GiftDisplayedPrice}=			css=div[id="gcx-gf-section-0"] div[class*="sc-kpOJdX"]:nth-child(NUM) span[data-test="price"]
+${GiftFilteredResults}=			css=div[id="gcx-gf-section-0"] div[class*="sc-ckVGcZ"]
+${GiftDisplayedPrice}=			css=div[id="gcx-gf-section-0"] div[class*="sc-ckVGcZ"]:nth-child(NUM) span[data-test="price"]
 ${FilterPriceDropdownButton}=		css=div[data-test="price-filter"]
 ${TortalFilteredPriceFromDropdoown}=		css=div[data-test*="dropdown"]>div[data-test*="option"]
 ${SelectPriceFromDropdoown}=		css=div[data-test*="dropdown"]>div:nth-child(NUM) 

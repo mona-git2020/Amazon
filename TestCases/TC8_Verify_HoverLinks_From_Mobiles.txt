@@ -20,8 +20,7 @@ Verify Hover Suggestions
 	\	${SingleHoverLink}=		Replace String		${SingleHoverLink}		NUM		${linkNum}
 	\	${hoverLinkValue}=		Get Text		${SingleHoverLink}
 	\	Mouse Over		${SingleHoverLink}
-	\	${status}=		Run Keyword And Return Status		Wait Until Element Is Visible		${ActiveLink}
-	\	${hoverValue}=		Get Text	${ActiveLink}
-	\	Mouse Out		${MobilesButton}
-	\	Wait Until Element Is Not Visible		${ActiveLink}
+	\	${status}=		Run Keyword And Return Status		Wait Until Element Contains		${ActiveLink}		${hoverLinkValue}
+	\	${activeHoverValue}=		Get Text	${ActiveLink}
+	\	Should Be Equal			${hoverLinkValue}		${activeHoverValue}	
 	\	${SingleHoverLink}=		Replace String		${SingleHoverLink}		${linkNum}		NUM	

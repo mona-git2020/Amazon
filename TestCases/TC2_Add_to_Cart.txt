@@ -15,15 +15,17 @@ Select Any Item And Add Item Into Cart
 	Wait Until Element Is Visible		${BrandSectionCheckbox}
 	${valueCheckbox}=		Get Text	${BrandSectionCheckbox}
 	Click Element		${BrandSectionCheckbox}
-	Element Should Contain		${ToolbarSection}		${valueCheckbox}
+	Wait Until Element Is Visible		${ToolbarSection}		timeout=10s	
+	${statusSelectedCheckbox}=		Run Keyword And Return Status		Element Should Contain		${ToolbarSection}		${valueCheckbox}
 	Click Element		${FirstItemValue}
 	Switch Window		NEW
 	Wait Until Element Is Visible		${AddToCartButton}		timeout=15s
-	Wait Until Element Is Visible		${CartNavButton}	
 	Click Element		${AddToCartButton}	
 
 Verify Item Into Cart
+	Wait Until Element Is Visible		${CartNavButton}		timeout=15s
 	Click Element		${CartNavButton}	
+	Wait Until Element Is Visible		${SubtotalActiveCart}		timeout=15s
 	Element Should Contain		${SubtotalActiveCart}		1	
 	Wait Until Element Is Visible		${ProductTitle}		timeout=15s	
 	${valueProductTitle}=	Get Text		${ProductTitle}
