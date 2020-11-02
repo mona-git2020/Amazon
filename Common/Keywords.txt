@@ -1,7 +1,7 @@
 
 *** Keywords ***
 Open Amazon
-	Open Browser	${urlOFAmazon}		${browser}		remote_url=http://192.168.137.1:4444/wd/hub		
+	Open Browser	${urlOFAmazon}		${browser}		remote_url=http://192.168.0.104:4444/wd/hub		
 	Maximize Browser Window
 
 Check Filters For All Pages 
