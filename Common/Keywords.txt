@@ -18,33 +18,29 @@ Check Filters For All Pages
 Check Filters In Single Page
 	[Arguments]		${firstValue}		${secondValue1}		${secondValue2}		${secondValue3}	
 	${totalResults}=		Get Element Count		${FilteredResults}
+	${totalResults}=		Run Keyword If		${totalResults}>=15		Set Variable		16
+	...		ELSE		Set Variable		${totalResults}			
 	: FOR	${singleResult}		IN RANGE		1	${totalResults}
 	\	${singleResultNum}=		Convert To String		${singleResult}	
 	\	${SingleFilteredResultNew}=			Replace String		${SingleFilteredResult}		NUM		${singleResultNum}
 	\	Element Should Be Visible		 ${SingleFilteredResultNew}		timeout=20s
 	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${singleResultNum}		NUM
-	\	${status}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Related searches
+	\	${status}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Related searches	
 	\	Continue For Loop If		${status}==True
-	\	${status1}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Sponsored
-	\	Continue For Loop If		${status1}==True
-	\	${status2}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Launching soon
-	\	Continue For Loop If		${status2}==True
-	\	${status3}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Prime Video
-	\	Continue For Loop If		${status3}==True
-	\	${status4}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		Shop by 
-	\	Continue For Loop If		${status4}==True
-	\	${status5}=		Run Keyword And Return Status		Element Should Contain 		${SingleFilteredResultNew}		FREE Delivery by Amazon
-	\	Continue For Loop If		${status5}==True
 	\	${value4}=		Convert To Uppercase		${secondValue2}
 	\	${charList}=		Split String To Characters		${secondValue2}
 	\	${firstChar}=		Convert To Uppercase		${charList[0]}
 	\	${value5}=		Replace String		${secondValue2}		${charList[0]}		${firstChar}		count=1
 	\	${statusResult}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${firstValue}	
+	\	Continue For Loop If		${statusResult}==True
 	\	${statusResult1}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${secondValue1}	
+	\	Continue For Loop If		${statusResult1}==True
 	\	${statusResult2}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${secondValue2}	
+	\	Continue For Loop If		${statusResult2}==True
 	\	${statusResult3}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${secondValue3}			
+	\	Continue For Loop If		${statusResult3}==True
 	\	${statusResult4}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${value4}			
+	\	Continue For Loop If		${statusResult4}==True
 	\	${statusResult5}=	Run Keyword And Return Status		Element Should Contain		${SingleFilteredResultNew}		${value5}			
+	\	Continue For Loop If		${statusResult5}==True
 	\	Run Keyword If		${statusResult}==False and ${statusResult1}==False and ${statusResult2}==False and ${statusResult3}==False and ${statusResult4}==False and ${statusResult5}==False		Element Should Be Visible		${SingleFilteredResultNew}					
-	\	${SingleFilteredResult}=	Replace String		${SingleFilteredResult}		${singleResultNum}		NUM
-	\	${singleResult}=	Evaluate	${singleResult}+1

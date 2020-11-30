@@ -22,13 +22,11 @@ Verify All Filter Department
 	\	${filterLabel}=		Get Text		${DepartmentFilterLabel}
 	\	Click Element		${DepartmentFilterLabel}
 	\	Wait Until Element Is Visible		${AllDealsShowingSection}		timeout=10s	
-	\	${statusSelectedFilter}=		Run Keyword And Return Status		Element Should Contain			${AllDealsShowingSection}			${filterLabel}
-	\	${statusSelectedCheckbox}=		Run Keyword And Return Status		Checkbox Should Be Selected		${DepartmentFilterCheckbox}
+	\	Checkbox Should Be Selected		${DepartmentFilterCheckbox}
 	\	Verify Department Filtered Results For Single Page			${filterLabel}
 	\	Click Element		${DepartmentFilterLabel}
 	\	Wait Until Element Is Visible		${DepartmentFilteredResults}		timeout=10s
-	\	${statusFilter}=		Run Keyword And Return Status		Element Should Not Contain			${AllDealsShowingSection}			${filterLabel}
-	\	${statusCheckbox}=		Run Keyword And Return Status		Checkbox Should Not Be Selected			${DepartmentFilterCheckbox}	
+	\	Checkbox Should Not Be Selected			${DepartmentFilterCheckbox}	
 	\	${DepartmentFilterLabel}=		Replace String		${DepartmentFilterLabel}		${filterNum}		NUM
 	\	${DepartmentFilterCheckbox}=		Replace String			${DepartmentFilterCheckbox}			${filterNum}		NUM
 
@@ -38,6 +36,8 @@ Verify Department Filtered Results For Single Page
 	${filterLabel}=		Remove String		${filterLabel}		(		)	
 	${filterLabel}=		Split String		${filterLabel}		${SPACE}
 	${totalResults}=		Get Element Count		${DepartmentFilteredResults}
+	${totalResults}=		Run Keyword If		${totalResults}>=15		Set Variable		15
+	...		ELSE		Set Variable		${totalResults}			
 	: FOR	${result}		IN RANGE		1	${totalResults}+1
 	\	${resultNum}=		Convert To String		${result}
 	\	${SingleDepartmentFilteredResults}=		Replace String		${SingleDepartmentFilteredResults}		NUM		${resultNum}

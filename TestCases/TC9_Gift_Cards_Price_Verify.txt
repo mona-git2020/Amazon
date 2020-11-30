@@ -16,7 +16,7 @@ Select Gift Cards From Gift Ideas
 	Wait Until Element Is Visible		${GiftFilteredResults}		timeout=15s
 
 Select Gift Price From Filter Price And Verify 
-	${status}=		Run Keyword And Return Status		Element Should Be Visible		${GiftFilteredResults}	
+	Element Should Be Visible		${GiftFilteredResults}	
 	Click Element		${FilterPriceDropdownButton}
 	Wait Until Element Is Visible		${TortalFilteredPriceFromDropdoown}
 	${totalFilterPrice}=		Get Element Count		${TortalFilteredPriceFromDropdoown}
@@ -44,6 +44,6 @@ Check Price Filter From Gift Cards For All Results
 	\	${displayedPrice}=		Get Text		${GiftDisplayedPrice}
 	\	${displayedPrice}=		Get Substring		${displayedPrice}		1	
 	\	${statusPrice1}=		Run Keyword And Return Status		Element Should Contain		${FilterPriceDropdownButton}		Up to	
+	\	Run Keyword If		${statusPrice1}==True		Run Keywords		Should Be True		${displayedPrice}<=${price}	AND	Continue For Loop
 	\	${statusPrice2}=		Run Keyword And Return Status		Element Should Contain		${FilterPriceDropdownButton}		Over	
-	\	Run Keyword If		${statusPrice1}==True		Should Be True		${displayedPrice}<=${price}
 	\	Run Keyword If		${statusPrice2}==True		Should Be True		${displayedPrice}>=${price}

@@ -85,11 +85,10 @@ Verify Sort By Price For All Rows
 	\	${previousPrice2}=		Run Keyword If		${statusMoreChoice2}==True		Get Substring		${previousPrice2}			1		
 	\	${previousPrice2}=		Run Keyword If		${statusMoreChoice2}==True		Remove String		${previousPrice2}			,		
 	\	${status}=		Run Keyword And Return Status		Element Should Contain 		${SortByButton}		Low to High
-	\	Run Keyword If		${status}==True and ${statusMoreChoice}==True and ${statusMoreChoice2}==True		Run Keyword And Return Status		Should Be True			${previousPrice2}<=${currentPrice2}
-	\	...			ELSE IF			${status}==True and ${statusMoreChoice}==False and ${statusMoreChoice2}==True			Run Keyword And Return Status		Should Be True			${previousPrice2}<=${currentPrice}
-	\	...			ELSE IF			${status}==True and ${statusMoreChoice}==False and ${statusMoreChoice2}==False			Run Keyword And Return Status		Should Be True			${previousPrice}<=${currentPrice}
-	\	Run Keyword If		${status}==False and ${statusMoreChoice}==True and ${statusMoreChoice2}==True		Run Keyword And Return Status		Should Be True			${previousPrice2}>=${currentPrice2}	
-	\	...			ELSE IF			${status}==False and ${statusMoreChoice}==False and ${statusMoreChoice2}==True			Run Keyword And Return Status		Should Be True			${previousPrice2}>=${currentPrice}
-	\	...			ELSE IF			${status}==False and ${statusMoreChoice}==False and ${statusMoreChoice2}==False			Run Keyword And Return Status		Should Be True			${previousPrice}>=${currentPrice}
+	\	Run Keyword If		${status}==True and ${statusMoreChoice}==True and ${statusMoreChoice2}==True		Should Be True			${previousPrice2}<=${currentPrice2}
+	\	...			ELSE IF			${status}==True and ${statusMoreChoice}==False and ${statusMoreChoice2}==True		Should Be True			${previousPrice2}<=${currentPrice}
+	\	...			ELSE IF			${status}==True and ${statusMoreChoice}==False and ${statusMoreChoice2}==False		Should Be True			${previousPrice}<=${currentPrice}
+	\	Run Keyword If		${status}==False and ${statusMoreChoice}==True and ${statusMoreChoice2}==True		Should Be True			${previousPrice2}>=${currentPrice2}	
+	\	...			ELSE IF			${status}==False and ${statusMoreChoice}==False and ${statusMoreChoice2}==True		Should Be True			${previousPrice2}>=${currentPrice}
+	\	...			ELSE IF			${status}==False and ${statusMoreChoice}==False and ${statusMoreChoice2}==False		Should Be True			${previousPrice}>=${currentPrice}
 	\	Wait Until Element is visible		${FilteredResults}		timeout=10s
-	\	${row}=		Evaluate	${row}+1
