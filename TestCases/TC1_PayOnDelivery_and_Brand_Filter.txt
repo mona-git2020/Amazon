@@ -33,26 +33,24 @@ Check All Results According to Pay on Delivery Filter
 	
 Select All Filters From Brands Filter Section and Check All Results According To Selected Filter
 	Wait Until Element Is Visible		${BrandSection}		timeout=10s	
-	${totalFilters}=	Get Element Count		${BrandSection}
-	: For	${filter}		IN RANGE	1	${totalFilters}
-	\	${filternum}=	Convert To String		${filter}	
-	\	${num} =	Evaluate		${filternum}-1
-	\	${keys}=	Get Dictionary Keys		${brandsList}		
-	\	${BrandSectionCheckbox}=	Replace String		${BrandSectionCheckbox}		VALUE		${keys[${num}]}
-	\	${BrandSectionSelectedCheckbox}=	Replace String		${BrandSectionSelectedCheckbox}		VALUE		${keys[${num}]}
-	\	log		${BrandSectionCheckbox}	
-	\	Wait Until Element Is Visible		${BrandSectionCheckbox}		timeout=10s
-	\	Click Element		${BrandSectionCheckbox}
+	${totalFilters}=	Get Length		${brandsList}
+	${keys}=	Get Dictionary Keys		${brandsList}
+	: For	${keyValue}		IN 		@{keys}				
+	\	${BrandSectionCheckboxNew}=	Replace String		${BrandSectionCheckbox}		VALUE		${keyValue}
+	\	${BrandSectionSelectedCheckboxNew}=	Replace String		${BrandSectionSelectedCheckbox}		VALUE		${keyValue}
+	\	${BrandSectionCheckbox}=	Replace String		${BrandSectionCheckbox}		${keyValue}		VALUE	
+	\	${BrandSectionSelectedCheckbox}=	Replace String		${BrandSectionSelectedCheckbox}		${keyValue}		VALUE		
+	\	${statusBranchSection}=		Run Keyword And Return Status		Wait Until Element Is Visible		${BrandSectionCheckboxNew}		timeout=10s
+	\	Continue For Loop If		${statusBranchSection}==False				
+	\	Click Element		${BrandSectionCheckboxNew}
 	\	${statusToolbar}=		Run Keyword And Return Status		Wait Until Element Is Visible		${ToolbarSection}		timeout=5s
-	\	Run Keyword If		${statusToolbar}==False		Click Element		${BrandSectionCheckbox}
-	\	Element Should Contain		${BrandSectionSelectedCheckbox}		${keys[${num}]}
+	\	Run Keyword If		${statusToolbar}==False		Click Element		${BrandSectionCheckboxNew}
+	\	Element Should Contain		${BrandSectionSelectedCheckboxNew}		${keyValue}
 	\	Wait Until Element Is Visible		${FilteredResults}
-	\	${firstValue}=		Get From Dictionary		${brandsList}		${keys[${num}]}
+	\	${firstValue}=		Get From Dictionary		${brandsList}		${keyValue}
 	\	${lowerValue}=		Convert To Lowercase		${firstValue}
 	\	${upperValue}=		Convert To Uppercase		${firstValue}
-	\	Check Filters In Single Page		${firstValue}		${keys[${num}]}		${lowerValue}		${upperValue}
-	\	${BrandSectionCheckbox}=	Replace String		${BrandSectionCheckbox}		${keys[${num}]}		VALUE	
-	\	Wait Until Element Is Visible		${BrandSectionSelectedCheckbox}		timeout=10s
-	\	Click Element		${BrandSectionSelectedCheckbox}
+	\	Check Filters In Single Page		${firstValue}		${keyValue}		${lowerValue}		${upperValue}
+	\	Wait Until Element Is Visible		${BrandSectionSelectedCheckboxNew}		timeout=10s
+	\	Click Element		${BrandSectionSelectedCheckboxNew}
 	\	Wait Until Element Is Not Visible		${ToolbarSection}		timeout=5s
-	\	${BrandSectionSelectedCheckbox}=	Replace String		${BrandSectionSelectedCheckbox}		${keys[${num}]}		VALUE		
